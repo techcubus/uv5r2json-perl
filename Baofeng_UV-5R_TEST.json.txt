@@ -1,0 +1,1539 @@
+FChunk(000): FFFFFFFF FFFFFFFF
+AChunk(000): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH000 flags=FF bits=11111111 widebit=1
+
+FChunk(001): 46256250 46256250
+AChunk(001): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH001 flags=04 bits=00000100 widebit=0
+
+FChunk(002): 46258750 46258750
+AChunk(002): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH002 flags=04 bits=00000100 widebit=0
+
+FChunk(003): 46261250 46261250
+AChunk(003): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH003 flags=04 bits=00000100 widebit=0
+
+FChunk(004): 46263750 46263750
+AChunk(004): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH004 flags=04 bits=00000100 widebit=0
+
+FChunk(005): 46266250 46266250
+AChunk(005): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH005 flags=04 bits=00000100 widebit=0
+
+FChunk(006): 46268750 46268750
+AChunk(006): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH006 flags=04 bits=00000100 widebit=0
+
+FChunk(007): 46271250 46271250
+AChunk(007): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH007 flags=04 bits=00000100 widebit=0
+
+FChunk(008): 46756250 46756250
+AChunk(008): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH008 flags=04 bits=00000100 widebit=0
+
+FChunk(009): 46758750 46758750
+AChunk(009): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH009 flags=04 bits=00000100 widebit=0
+
+FChunk(010): 46761250 46761250
+AChunk(010): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH010 flags=04 bits=00000100 widebit=0
+
+FChunk(011): 46763750 46763750
+AChunk(011): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH011 flags=04 bits=00000100 widebit=0
+
+FChunk(012): 46766250 46766250
+AChunk(012): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH012 flags=04 bits=00000100 widebit=0
+
+FChunk(013): 46768750 46768750
+AChunk(013): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH013 flags=04 bits=00000100 widebit=0
+
+FChunk(014): 46771250 46771250
+AChunk(014): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH014 flags=04 bits=00000100 widebit=0
+
+FChunk(015): 46255000 46255000
+AChunk(015): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH015 flags=04 bits=00000100 widebit=0
+
+FChunk(016): 46255000 46755000
+AChunk(016): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH016 flags=00 bits=00000000 widebit=0
+
+FChunk(017): 46257500 46257500
+AChunk(017): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH017 flags=04 bits=00000100 widebit=0
+
+FChunk(018): 46257500 46757500
+AChunk(018): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH018 flags=00 bits=00000000 widebit=0
+
+FChunk(019): 46260000 46260000
+AChunk(019): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH019 flags=04 bits=00000100 widebit=0
+
+FChunk(020): 46260000 46760000
+AChunk(020): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH020 flags=00 bits=00000000 widebit=0
+
+FChunk(021): 46262500 46262500
+AChunk(021): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH021 flags=04 bits=00000100 widebit=0
+
+FChunk(022): 46262500 46762500
+AChunk(022): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH022 flags=00 bits=00000000 widebit=0
+
+FChunk(023): 46265000 46265000
+AChunk(023): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH023 flags=04 bits=00000100 widebit=0
+
+FChunk(024): 46265000 46765000
+AChunk(024): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH024 flags=00 bits=00000000 widebit=0
+
+FChunk(025): 46267500 46267500
+AChunk(025): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH025 flags=04 bits=00000100 widebit=0
+
+FChunk(026): 46267500 46767500
+AChunk(026): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH026 flags=00 bits=00000000 widebit=0
+
+FChunk(027): 46270000 46270000
+AChunk(027): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH027 flags=04 bits=00000100 widebit=0
+
+FChunk(028): 46270000 46770000
+AChunk(028): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH028 flags=00 bits=00000000 widebit=0
+
+FChunk(029): 46272500 46272500
+AChunk(029): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH029 flags=04 bits=00000100 widebit=0
+
+FChunk(030): 46272500 46772500
+AChunk(030): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH030 flags=00 bits=00000000 widebit=0
+
+FChunk(031): 15182000 15182000
+AChunk(031): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH031 flags=04 bits=00000100 widebit=0
+
+FChunk(032): 15188000 15188000
+AChunk(032): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH032 flags=04 bits=00000100 widebit=0
+
+FChunk(033): 15194000 15194000
+AChunk(033): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH033 flags=04 bits=00000100 widebit=0
+
+FChunk(034): 15457000 15457000
+AChunk(034): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH034 flags=04 bits=00000100 widebit=0
+
+FChunk(035): 15460000 15460000
+AChunk(035): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH035 flags=04 bits=00000100 widebit=0
+
+FChunk(036): 15162500 15162500
+AChunk(036): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH036 flags=04 bits=00000100 widebit=0
+
+FChunk(037): 15195500 15195500
+AChunk(037): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH037 flags=04 bits=00000100 widebit=0
+
+FChunk(038): 46450000 46450000
+AChunk(038): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH038 flags=04 bits=00000100 widebit=0
+
+FChunk(039): 46455000 46455000
+AChunk(039): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH039 flags=04 bits=00000100 widebit=0
+
+FChunk(040): 46776250 46776250
+AChunk(040): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH040 flags=04 bits=00000100 widebit=0
+
+FChunk(041): 46781250 46781250
+AChunk(041): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH041 flags=04 bits=00000100 widebit=0
+
+FChunk(042): 46785000 46785000
+AChunk(042): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH042 flags=04 bits=00000100 widebit=0
+
+FChunk(043): 46787500 46787500
+AChunk(043): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH043 flags=04 bits=00000100 widebit=0
+
+FChunk(044): 46790000 46790000
+AChunk(044): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH044 flags=04 bits=00000100 widebit=0
+
+FChunk(045): 46792500 46792500
+AChunk(045): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH045 flags=04 bits=00000100 widebit=0
+
+FChunk(046): 15630000 15630000
+AChunk(046): raw=0000000000000100 lo=00010000 hi=00000000 q=0001000000000000
+CH046 flags=00 bits=00000000 widebit=0
+
+FChunk(047): 15645000 15645000
+AChunk(047): raw=0000000000000100 lo=00010000 hi=00000000 q=0001000000000000
+CH047 flags=00 bits=00000000 widebit=0
+
+FChunk(048): 15680000 15680000
+AChunk(048): raw=0000000000000100 lo=00010000 hi=00000000 q=0001000000000000
+CH048 flags=00 bits=00000000 widebit=0
+
+FChunk(049): 14652000 14652000
+AChunk(049): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH049 flags=44 bits=01000100 widebit=1
+
+FChunk(050): 14513000 14453000
+AChunk(050): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH050 flags=44 bits=01000100 widebit=1
+
+FChunk(051): 14523000 14463000
+AChunk(051): raw=00001d0300000044 lo=44000000 hi=031D0000 q=44000000031D0000
+CH051 flags=44 bits=01000100 widebit=1
+
+FChunk(052): 14527000 14467000
+AChunk(052): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH052 flags=44 bits=01000100 widebit=1
+
+FChunk(053): 14531000 14471000
+AChunk(053): raw=00001d0300000004 lo=04000000 hi=031D0000 q=04000000031D0000
+CH053 flags=04 bits=00000100 widebit=0
+
+FChunk(054): 14533000 14473000
+AChunk(054): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH054 flags=44 bits=01000100 widebit=1
+
+FChunk(055): 14535000 14475000
+AChunk(055): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH055 flags=44 bits=01000100 widebit=1
+
+FChunk(056): 14537000 14477000
+AChunk(056): raw=0000750300000044 lo=44000000 hi=03750000 q=4400000003750000
+CH056 flags=44 bits=01000100 widebit=1
+
+FChunk(057): 14541000 14481000
+AChunk(057): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH057 flags=44 bits=01000100 widebit=1
+
+FChunk(058): 14545000 14485000
+AChunk(058): raw=0000f90400000044 lo=44000000 hi=04F90000 q=4400000004F90000
+CH058 flags=44 bits=01000100 widebit=1
+
+FChunk(059): 14547000 14487000
+AChunk(059): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH059 flags=44 bits=01000100 widebit=1
+
+FChunk(060): 14549000 14489000
+AChunk(060): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH060 flags=44 bits=01000100 widebit=1
+
+FChunk(061): 14580000 14449000
+AChunk(061): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH061 flags=44 bits=01000100 widebit=1
+
+FChunk(062): 14655000 14655000
+AChunk(062): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH062 flags=04 bits=00000100 widebit=0
+
+FChunk(063): 14667000 14607000
+AChunk(063): raw=0000850500000004 lo=04000000 hi=05850000 q=0400000005850000
+CH063 flags=04 bits=00000100 widebit=0
+
+FChunk(064): 14671500 14611500
+AChunk(064): raw=0000750300000044 lo=44000000 hi=03750000 q=4400000003750000
+CH064 flags=44 bits=01000100 widebit=1
+
+FChunk(065): 14673000 14613000
+AChunk(065): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH065 flags=44 bits=01000100 widebit=1
+
+FChunk(066): 14676000 14616000
+AChunk(066): raw=0000f90400000044 lo=44000000 hi=04F90000 q=4400000004F90000
+CH066 flags=44 bits=01000100 widebit=1
+
+FChunk(067): 14679000 14619000
+AChunk(067): raw=0000f90400000044 lo=44000000 hi=04F90000 q=4400000004F90000
+CH067 flags=44 bits=01000100 widebit=1
+
+FChunk(068): 14685000 14625000
+AChunk(068): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH068 flags=44 bits=01000100 widebit=1
+
+FChunk(069): 14694000 14634000
+AChunk(069): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH069 flags=44 bits=01000100 widebit=1
+
+FChunk(070): 14691000 14631000
+AChunk(070): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH070 flags=44 bits=01000100 widebit=1
+
+FChunk(071): 14697000 14637000
+AChunk(071): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH071 flags=44 bits=01000100 widebit=1
+
+FChunk(072): 14700000 14640000
+AChunk(072): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH072 flags=44 bits=01000100 widebit=1
+
+FChunk(073): 14700000 14640000
+AChunk(073): raw=0000300400000044 lo=44000000 hi=04300000 q=4400000004300000
+CH073 flags=44 bits=01000100 widebit=1
+
+FChunk(074): 14706000 14766000
+AChunk(074): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH074 flags=44 bits=01000100 widebit=1
+
+FChunk(075): 44600000 44600000
+AChunk(075): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH075 flags=44 bits=01000100 widebit=1
+
+FChunk(076): 44207500 44707500
+AChunk(076): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH076 flags=44 bits=01000100 widebit=1
+
+FChunk(077): 44210000 44710000
+AChunk(077): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH077 flags=44 bits=01000100 widebit=1
+
+FChunk(078): 44217500 44717500
+AChunk(078): raw=00000b0400000044 lo=44000000 hi=040B0000 q=44000000040B0000
+CH078 flags=44 bits=01000100 widebit=1
+
+FChunk(079): 44222500 44722500
+AChunk(079): raw=00001d0300000044 lo=44000000 hi=031D0000 q=44000000031D0000
+CH079 flags=44 bits=01000100 widebit=1
+
+FChunk(080): 44235000 44735000
+AChunk(080): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH080 flags=44 bits=01000100 widebit=1
+
+FChunk(081): 44240000 44740000
+AChunk(081): raw=0000f90400000044 lo=44000000 hi=04F90000 q=4400000004F90000
+CH081 flags=44 bits=01000100 widebit=1
+
+FChunk(082): 44255000 44755000
+AChunk(082): raw=0000f90400000044 lo=44000000 hi=04F90000 q=4400000004F90000
+CH082 flags=44 bits=01000100 widebit=1
+
+FChunk(083): 44277500 44777500
+AChunk(083): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH083 flags=44 bits=01000100 widebit=1
+
+FChunk(084): 44290000 44790000
+AChunk(084): raw=00001d0300000044 lo=44000000 hi=031D0000 q=44000000031D0000
+CH084 flags=44 bits=01000100 widebit=1
+
+FChunk(085): 44307500 44807500
+AChunk(085): raw=0000850500000044 lo=44000000 hi=05850000 q=4400000005850000
+CH085 flags=44 bits=01000100 widebit=1
+
+FChunk(086): 44310000 44810000
+AChunk(086): raw=0000f90400000044 lo=44000000 hi=04F90000 q=4400000004F90000
+CH086 flags=44 bits=01000100 widebit=1
+
+FChunk(087): 44312500 44812500
+AChunk(087): raw=00000b0400000044 lo=44000000 hi=040B0000 q=44000000040B0000
+CH087 flags=44 bits=01000100 widebit=1
+
+FChunk(088): 44320000 44820000
+AChunk(088): raw=00000b0400000044 lo=44000000 hi=040B0000 q=44000000040B0000
+CH088 flags=44 bits=01000100 widebit=1
+
+FChunk(089): 44327500 44827500
+AChunk(089): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH089 flags=44 bits=01000100 widebit=1
+
+FChunk(090): 44340000 44840000
+AChunk(090): raw=0000ce0400000044 lo=44000000 hi=04CE0000 q=4400000004CE0000
+CH090 flags=44 bits=01000100 widebit=1
+
+FChunk(091): 44347500 44847500
+AChunk(091): raw=0000020300000044 lo=44000000 hi=03020000 q=4400000003020000
+CH091 flags=44 bits=01000100 widebit=1
+
+FChunk(092): 44440000 44940000
+AChunk(092): raw=0000e80300000044 lo=44000000 hi=03E80000 q=4400000003E80000
+CH092 flags=44 bits=01000100 widebit=1
+
+FChunk(093): 44457500 44957500
+AChunk(093): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH093 flags=44 bits=01000100 widebit=1
+
+FChunk(094): FFFFFFFF FFFFFFFF
+AChunk(094): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH094 flags=FF bits=11111111 widebit=1
+
+FChunk(095): FFFFFFFF FFFFFFFF
+AChunk(095): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH095 flags=FF bits=11111111 widebit=1
+
+FChunk(096): FFFFFFFF FFFFFFFF
+AChunk(096): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH096 flags=FF bits=11111111 widebit=1
+
+FChunk(097): FFFFFFFF FFFFFFFF
+AChunk(097): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH097 flags=FF bits=11111111 widebit=1
+
+FChunk(098): FFFFFFFF FFFFFFFF
+AChunk(098): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH098 flags=FF bits=11111111 widebit=1
+
+FChunk(099): FFFFFFFF FFFFFFFF
+AChunk(099): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH099 flags=FF bits=11111111 widebit=1
+
+FChunk(100): 15432500 FFFFFFFF
+AChunk(100): raw=0000000000000144 lo=44010000 hi=00000000 q=4401000000000000
+CH100 flags=44 bits=01000100 widebit=1
+
+FChunk(101): 15440000 FFFFFFFF
+AChunk(101): raw=0000000000000000 lo=00000000 hi=00000000 q=0000000000000000
+CH101 flags=00 bits=00000000 widebit=0
+
+FChunk(102): 15574500 FFFFFFFF
+AChunk(102): raw=0000000000000100 lo=00010000 hi=00000000 q=0001000000000000
+CH102 flags=00 bits=00000000 widebit=0
+
+FChunk(103): 46295000 FFFFFFFF
+AChunk(103): raw=7503750300000044 lo=44000000 hi=03750375 q=4400000003750375
+CH103 flags=44 bits=01000100 widebit=1
+
+FChunk(104): 46297500 00000000
+AChunk(104): raw=0100010000000044 lo=44000000 hi=00010001 q=4400000000010001
+CH104 flags=44 bits=01000100 widebit=1
+
+FChunk(105): 15454000 15454000
+AChunk(105): raw=ce04ce0400000044 lo=44000000 hi=04CE04CE q=4400000004CE04CE
+CH105 flags=44 bits=01000100 widebit=1
+
+FChunk(106): FFFFFFFF FFFFFFFF
+AChunk(106): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH106 flags=FF bits=11111111 widebit=1
+
+FChunk(107): FFFFFFFF FFFFFFFF
+AChunk(107): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH107 flags=FF bits=11111111 widebit=1
+
+FChunk(108): FFFFFFFF FFFFFFFF
+AChunk(108): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH108 flags=FF bits=11111111 widebit=1
+
+FChunk(109): FFFFFFFF FFFFFFFF
+AChunk(109): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH109 flags=FF bits=11111111 widebit=1
+
+FChunk(110): FFFFFFFF FFFFFFFF
+AChunk(110): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH110 flags=FF bits=11111111 widebit=1
+
+FChunk(111): 14736000 14796000
+AChunk(111): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH111 flags=44 bits=01000100 widebit=1
+
+FChunk(112): 14694000 14634000
+AChunk(112): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH112 flags=44 bits=01000100 widebit=1
+
+FChunk(113): 14533000 14473000
+AChunk(113): raw=0000000000000004 lo=04000000 hi=00000000 q=0400000000000000
+CH113 flags=04 bits=00000100 widebit=0
+
+FChunk(114): 14519000 14459000
+AChunk(114): raw=0000000000000044 lo=44000000 hi=00000000 q=4400000000000000
+CH114 flags=44 bits=01000100 widebit=1
+
+FChunk(115): 44347500 44847500
+AChunk(115): raw=0000020300000044 lo=44000000 hi=03020000 q=4400000003020000
+CH115 flags=44 bits=01000100 widebit=1
+
+FChunk(116): 14739000 14799000
+AChunk(116): raw=0000e80300000044 lo=44000000 hi=03E80000 q=4400000003E80000
+CH116 flags=44 bits=01000100 widebit=1
+
+FChunk(117): 14697000 14637000
+AChunk(117): raw=0000e80300000044 lo=44000000 hi=03E80000 q=4400000003E80000
+CH117 flags=44 bits=01000100 widebit=1
+
+FChunk(118): FFFFFFFF FFFFFFFF
+AChunk(118): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH118 flags=FF bits=11111111 widebit=1
+
+FChunk(119): FFFFFFFF FFFFFFFF
+AChunk(119): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH119 flags=FF bits=11111111 widebit=1
+
+FChunk(120): FFFFFFFF FFFFFFFF
+AChunk(120): raw=ffffffffffffffff lo=FFFFFFFF hi=FFFFFFFF q=FFFFFFFFFFFFFFFF
+CH120 flags=FF bits=11111111 widebit=1
+
+FChunk(121): 16240000 16240000
+AChunk(121): raw=0000000000000140 lo=40010000 hi=00000000 q=4001000000000000
+CH121 flags=40 bits=01000000 widebit=1
+
+FChunk(122): 16242500 16242500
+AChunk(122): raw=0000000000000140 lo=40010000 hi=00000000 q=4001000000000000
+CH122 flags=40 bits=01000000 widebit=1
+
+FChunk(123): 16245000 16245000
+AChunk(123): raw=0000000000000140 lo=40010000 hi=00000000 q=4001000000000000
+CH123 flags=40 bits=01000000 widebit=1
+
+FChunk(124): 16247500 16247500
+AChunk(124): raw=0000000000000140 lo=40010000 hi=00000000 q=4001000000000000
+CH124 flags=40 bits=01000000 widebit=1
+
+FChunk(125): 16250000 16250000
+AChunk(125): raw=0000000000000140 lo=40010000 hi=00000000 q=4001000000000000
+CH125 flags=40 bits=01000000 widebit=1
+
+FChunk(126): 16252500 16252500
+AChunk(126): raw=0000000000000140 lo=40010000 hi=00000000 q=4001000000000000
+CH126 flags=40 bits=01000000 widebit=1
+
+FChunk(127): 16255000 16255000
+AChunk(127): raw=0000000000000140 lo=40010000 hi=00000000 q=4001000000000000
+CH127 flags=40 bits=01000000 widebit=1
+
+[
+   {
+      "freq_rx_mhz" : null,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff",
+      "index" : 0,
+      "attribs_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5
+   },
+   {
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_raw" : "5062254650622546",
+      "freq_tx_mhz" : 462.5625,
+      "index" : 1,
+      "freq_rx_mhz" : 462.5625
+   },
+   {
+      "freq_rx_mhz" : 462.5875,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "index" : 2,
+      "freq_tx_mhz" : 462.5875,
+      "freq_raw" : "5087254650872546"
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_tx_mhz" : 462.6125,
+      "freq_raw" : "5012264650122646",
+      "index" : 3,
+      "freq_rx_mhz" : 462.6125
+   },
+   {
+      "freq_rx_mhz" : 462.6375,
+      "freq_tx_mhz" : 462.6375,
+      "index" : 4,
+      "freq_raw" : "5037264650372646",
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "freq_rx_mhz" : 462.6625,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_raw" : "5062264650622646",
+      "freq_tx_mhz" : 462.6625,
+      "index" : 5
+   },
+   {
+      "index" : 6,
+      "freq_tx_mhz" : 462.6875,
+      "freq_raw" : "5087264650872646",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_rx_mhz" : 462.6875
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_tx_mhz" : 462.7125,
+      "index" : 7,
+      "freq_raw" : "5012274650122746",
+      "freq_rx_mhz" : 462.7125
+   },
+   {
+      "freq_rx_mhz" : 467.5625,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_tx_mhz" : 467.5625,
+      "freq_raw" : "5062754650627546",
+      "index" : 8
+   },
+   {
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_raw" : "5087754650877546",
+      "freq_tx_mhz" : 467.5875,
+      "index" : 9,
+      "freq_rx_mhz" : 467.5875
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_tx_mhz" : 467.6125,
+      "freq_raw" : "5012764650127646",
+      "index" : 10,
+      "freq_rx_mhz" : 467.6125
+   },
+   {
+      "freq_tx_mhz" : 467.6375,
+      "index" : 11,
+      "freq_raw" : "5037764650377646",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_rx_mhz" : 467.6375
+   },
+   {
+      "freq_tx_mhz" : 467.6625,
+      "index" : 12,
+      "freq_raw" : "5062764650627646",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_rx_mhz" : 467.6625
+   },
+   {
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_raw" : "5087764650877646",
+      "freq_tx_mhz" : 467.6875,
+      "index" : 13,
+      "freq_rx_mhz" : 467.6875
+   },
+   {
+      "freq_rx_mhz" : 467.7125,
+      "freq_raw" : "5012774650127746",
+      "freq_tx_mhz" : 467.7125,
+      "index" : 14,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "freq_tx_mhz" : 462.55,
+      "freq_raw" : "0050254600502546",
+      "index" : 15,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 462.55
+   },
+   {
+      "attribs_raw" : "0000000000000000",
+      "tone_hz" : null,
+      "freq_tx_mhz" : 467.55,
+      "index" : 16,
+      "freq_raw" : "0050254600507546",
+      "freq_rx_mhz" : 462.55
+   },
+   {
+      "freq_rx_mhz" : 462.575,
+      "freq_tx_mhz" : 462.575,
+      "index" : 17,
+      "freq_raw" : "0075254600752546",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004"
+   },
+   {
+      "attribs_raw" : "0000000000000000",
+      "tone_hz" : null,
+      "index" : 18,
+      "freq_tx_mhz" : 467.575,
+      "freq_raw" : "0075254600757546",
+      "freq_rx_mhz" : 462.575
+   },
+   {
+      "freq_rx_mhz" : 462.6,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "index" : 19,
+      "freq_tx_mhz" : 462.6,
+      "freq_raw" : "0000264600002646"
+   },
+   {
+      "freq_tx_mhz" : 467.6,
+      "freq_raw" : "0000264600007646",
+      "index" : 20,
+      "attribs_raw" : "0000000000000000",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 462.6
+   },
+   {
+      "freq_raw" : "0025264600252646",
+      "freq_tx_mhz" : 462.625,
+      "index" : 21,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 462.625
+   },
+   {
+      "freq_rx_mhz" : 462.625,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000000",
+      "freq_tx_mhz" : 467.625,
+      "freq_raw" : "0025264600257646",
+      "index" : 22
+   },
+   {
+      "freq_rx_mhz" : 462.65,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_tx_mhz" : 462.65,
+      "index" : 23,
+      "freq_raw" : "0050264600502646"
+   },
+   {
+      "freq_rx_mhz" : 462.65,
+      "freq_tx_mhz" : 467.65,
+      "freq_raw" : "0050264600507646",
+      "index" : 24,
+      "attribs_raw" : "0000000000000000",
+      "tone_hz" : null
+   },
+   {
+      "freq_rx_mhz" : 462.675,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "index" : 25,
+      "freq_tx_mhz" : 462.675,
+      "freq_raw" : "0075264600752646"
+   },
+   {
+      "freq_rx_mhz" : 462.675,
+      "freq_tx_mhz" : 467.675,
+      "index" : 26,
+      "freq_raw" : "0075264600757646",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000000"
+   },
+   {
+      "freq_rx_mhz" : 462.7,
+      "freq_tx_mhz" : 462.7,
+      "freq_raw" : "0000274600002746",
+      "index" : 27,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "freq_tx_mhz" : 467.7,
+      "index" : 28,
+      "freq_raw" : "0000274600007746",
+      "attribs_raw" : "0000000000000000",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 462.7
+   },
+   {
+      "freq_tx_mhz" : 462.725,
+      "freq_raw" : "0025274600252746",
+      "index" : 29,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_rx_mhz" : 462.725
+   },
+   {
+      "index" : 30,
+      "freq_tx_mhz" : 467.725,
+      "freq_raw" : "0025274600257746",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000000",
+      "freq_rx_mhz" : 462.725
+   },
+   {
+      "freq_rx_mhz" : 151.82,
+      "index" : 31,
+      "freq_tx_mhz" : 151.82,
+      "freq_raw" : "0020181500201815",
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_tx_mhz" : 151.88,
+      "freq_raw" : "0080181500801815",
+      "index" : 32,
+      "freq_rx_mhz" : 151.88
+   },
+   {
+      "freq_rx_mhz" : 151.94,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "index" : 33,
+      "freq_tx_mhz" : 151.94,
+      "freq_raw" : "0040191500401915"
+   },
+   {
+      "freq_rx_mhz" : 154.57,
+      "freq_tx_mhz" : 154.57,
+      "freq_raw" : "0070451500704515",
+      "index" : 34,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004"
+   },
+   {
+      "freq_rx_mhz" : 154.6,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_tx_mhz" : 154.6,
+      "index" : 35,
+      "freq_raw" : "0000461500004615"
+   },
+   {
+      "freq_raw" : "0025161500251615",
+      "freq_tx_mhz" : 151.625,
+      "index" : 36,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 151.625
+   },
+   {
+      "freq_rx_mhz" : 151.955,
+      "index" : 37,
+      "freq_tx_mhz" : 151.955,
+      "freq_raw" : "0055191500551915",
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "freq_tx_mhz" : 464.5,
+      "freq_raw" : "0000454600004546",
+      "index" : 38,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 464.5
+   },
+   {
+      "freq_rx_mhz" : 464.55,
+      "freq_tx_mhz" : 464.55,
+      "index" : 39,
+      "freq_raw" : "0050454600504546",
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "freq_tx_mhz" : 467.7625,
+      "freq_raw" : "5062774650627746",
+      "index" : 40,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000004",
+      "freq_rx_mhz" : 467.7625
+   },
+   {
+      "freq_rx_mhz" : 467.8125,
+      "index" : 41,
+      "freq_tx_mhz" : 467.8125,
+      "freq_raw" : "5012784650127846",
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "freq_rx_mhz" : 467.85,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_tx_mhz" : 467.85,
+      "freq_raw" : "0050784600507846",
+      "index" : 42
+   },
+   {
+      "freq_rx_mhz" : 467.875,
+      "freq_tx_mhz" : 467.875,
+      "index" : 43,
+      "freq_raw" : "0075784600757846",
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null
+   },
+   {
+      "freq_rx_mhz" : 467.9,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_tx_mhz" : 467.9,
+      "freq_raw" : "0000794600007946",
+      "index" : 44
+   },
+   {
+      "freq_rx_mhz" : 467.925,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "index" : 45,
+      "freq_tx_mhz" : 467.925,
+      "freq_raw" : "0025794600257946"
+   },
+   {
+      "freq_raw" : "0000631500006315",
+      "freq_tx_mhz" : 156.3,
+      "index" : 46,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000100",
+      "freq_rx_mhz" : 156.3
+   },
+   {
+      "freq_rx_mhz" : 156.45,
+      "freq_raw" : "0050641500506415",
+      "freq_tx_mhz" : 156.45,
+      "index" : 47,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000100"
+   },
+   {
+      "freq_tx_mhz" : 156.8,
+      "freq_raw" : "0000681500006815",
+      "index" : 48,
+      "attribs_raw" : "0000000000000100",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 156.8
+   },
+   {
+      "freq_tx_mhz" : 146.52,
+      "freq_raw" : "0020651400206514",
+      "index" : 49,
+      "attribs_raw" : "0000000000000044",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 146.52
+   },
+   {
+      "freq_rx_mhz" : 145.13,
+      "freq_tx_mhz" : 144.53,
+      "index" : 50,
+      "freq_raw" : "0030511400304514",
+      "tone_hz" : 123,
+      "attribs_raw" : "0000ce0400000044"
+   },
+   {
+      "tone_hz" : 79.7,
+      "attribs_raw" : "00001d0300000044",
+      "freq_tx_mhz" : 144.63,
+      "index" : 51,
+      "freq_raw" : "0030521400304614",
+      "freq_rx_mhz" : 145.23
+   },
+   {
+      "freq_rx_mhz" : 145.27,
+      "freq_tx_mhz" : 144.67,
+      "index" : 52,
+      "freq_raw" : "0070521400704614",
+      "attribs_raw" : "0000ce0400000044",
+      "tone_hz" : 123
+   },
+   {
+      "freq_raw" : "0010531400104714",
+      "freq_tx_mhz" : 144.71,
+      "index" : 53,
+      "attribs_raw" : "00001d0300000004",
+      "tone_hz" : 79.7,
+      "freq_rx_mhz" : 145.31
+   },
+   {
+      "index" : 54,
+      "freq_tx_mhz" : 144.73,
+      "freq_raw" : "0030531400304714",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000044",
+      "freq_rx_mhz" : 145.33
+   },
+   {
+      "freq_rx_mhz" : 145.35,
+      "index" : 55,
+      "freq_tx_mhz" : 144.75,
+      "freq_raw" : "0050531400504714",
+      "attribs_raw" : "0000ce0400000044",
+      "tone_hz" : 123
+   },
+   {
+      "freq_rx_mhz" : 145.37,
+      "attribs_raw" : "0000750300000044",
+      "tone_hz" : 88.5,
+      "freq_tx_mhz" : 144.77,
+      "freq_raw" : "0070531400704714",
+      "index" : 56
+   },
+   {
+      "tone_hz" : 141.3,
+      "attribs_raw" : "0000850500000044",
+      "freq_tx_mhz" : 144.81,
+      "index" : 57,
+      "freq_raw" : "0010541400104814",
+      "freq_rx_mhz" : 145.41
+   },
+   {
+      "freq_rx_mhz" : 145.45,
+      "attribs_raw" : "0000f90400000044",
+      "tone_hz" : 127.3,
+      "index" : 58,
+      "freq_tx_mhz" : 144.85,
+      "freq_raw" : "0050541400504814"
+   },
+   {
+      "freq_tx_mhz" : 144.87,
+      "index" : 59,
+      "freq_raw" : "0070541400704814",
+      "attribs_raw" : "0000ce0400000044",
+      "tone_hz" : 123,
+      "freq_rx_mhz" : 145.47
+   },
+   {
+      "freq_rx_mhz" : 145.49,
+      "attribs_raw" : "0000850500000044",
+      "tone_hz" : 141.3,
+      "freq_raw" : "0090541400904814",
+      "freq_tx_mhz" : 144.89,
+      "index" : 60
+   },
+   {
+      "freq_rx_mhz" : 145.8,
+      "index" : 61,
+      "freq_tx_mhz" : 144.49,
+      "freq_raw" : "0000581400904414",
+      "attribs_raw" : "0000000000000044",
+      "tone_hz" : null
+   },
+   {
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_raw" : "0050651400506514",
+      "freq_tx_mhz" : 146.55,
+      "index" : 62,
+      "freq_rx_mhz" : 146.55
+   },
+   {
+      "freq_rx_mhz" : 146.67,
+      "freq_tx_mhz" : 146.07,
+      "index" : 63,
+      "freq_raw" : "0070661400706014",
+      "attribs_raw" : "0000850500000004",
+      "tone_hz" : 141.3
+   },
+   {
+      "index" : 64,
+      "freq_tx_mhz" : 146.115,
+      "freq_raw" : "0015671400156114",
+      "tone_hz" : 88.5,
+      "attribs_raw" : "0000750300000044",
+      "freq_rx_mhz" : 146.715
+   },
+   {
+      "freq_raw" : "0030671400306114",
+      "freq_tx_mhz" : 146.13,
+      "index" : 65,
+      "attribs_raw" : "0000850500000044",
+      "tone_hz" : 141.3,
+      "freq_rx_mhz" : 146.73
+   },
+   {
+      "attribs_raw" : "0000f90400000044",
+      "tone_hz" : 127.3,
+      "freq_raw" : "0060671400606114",
+      "freq_tx_mhz" : 146.16,
+      "index" : 66,
+      "freq_rx_mhz" : 146.76
+   },
+   {
+      "tone_hz" : 127.3,
+      "attribs_raw" : "0000f90400000044",
+      "freq_tx_mhz" : 146.19,
+      "freq_raw" : "0090671400906114",
+      "index" : 67,
+      "freq_rx_mhz" : 146.79
+   },
+   {
+      "attribs_raw" : "0000850500000044",
+      "tone_hz" : 141.3,
+      "freq_tx_mhz" : 146.25,
+      "index" : 68,
+      "freq_raw" : "0050681400506214",
+      "freq_rx_mhz" : 146.85
+   },
+   {
+      "freq_tx_mhz" : 146.34,
+      "index" : 69,
+      "freq_raw" : "0040691400406314",
+      "attribs_raw" : "0000000000000044",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 146.94
+   },
+   {
+      "attribs_raw" : "0000850500000044",
+      "tone_hz" : 141.3,
+      "freq_tx_mhz" : 146.31,
+      "index" : 70,
+      "freq_raw" : "0010691400106314",
+      "freq_rx_mhz" : 146.91
+   },
+   {
+      "freq_rx_mhz" : 146.97,
+      "tone_hz" : 141.3,
+      "attribs_raw" : "0000850500000044",
+      "freq_tx_mhz" : 146.37,
+      "index" : 71,
+      "freq_raw" : "0070691400706314"
+   },
+   {
+      "freq_rx_mhz" : 147,
+      "attribs_raw" : "0000850500000044",
+      "tone_hz" : 141.3,
+      "freq_tx_mhz" : 146.4,
+      "index" : 72,
+      "freq_raw" : "0000701400006414"
+   },
+   {
+      "freq_rx_mhz" : 147,
+      "index" : 73,
+      "freq_tx_mhz" : 146.4,
+      "freq_raw" : "0000701400006414",
+      "attribs_raw" : "0000300400000044",
+      "tone_hz" : 107.2
+   },
+   {
+      "freq_rx_mhz" : 147.06,
+      "tone_hz" : 141.3,
+      "attribs_raw" : "0000850500000044",
+      "freq_tx_mhz" : 147.66,
+      "index" : 74,
+      "freq_raw" : "0060701400607614"
+   },
+   {
+      "freq_rx_mhz" : 446,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000044",
+      "index" : 75,
+      "freq_tx_mhz" : 446,
+      "freq_raw" : "0000604400006044"
+   },
+   {
+      "freq_rx_mhz" : 442.075,
+      "freq_raw" : "0075204400757044",
+      "freq_tx_mhz" : 447.075,
+      "index" : 76,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000044"
+   },
+   {
+      "freq_rx_mhz" : 442.1,
+      "index" : 77,
+      "freq_tx_mhz" : 447.1,
+      "freq_raw" : "0000214400007144",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000044"
+   },
+   {
+      "attribs_raw" : "00000b0400000044",
+      "tone_hz" : 103.5,
+      "freq_tx_mhz" : 447.175,
+      "index" : 78,
+      "freq_raw" : "0075214400757144",
+      "freq_rx_mhz" : 442.175
+   },
+   {
+      "freq_rx_mhz" : 442.225,
+      "attribs_raw" : "00001d0300000044",
+      "tone_hz" : 79.7,
+      "index" : 79,
+      "freq_tx_mhz" : 447.225,
+      "freq_raw" : "0025224400257244"
+   },
+   {
+      "freq_raw" : "0050234400507344",
+      "freq_tx_mhz" : 447.35,
+      "index" : 80,
+      "tone_hz" : 123,
+      "attribs_raw" : "0000ce0400000044",
+      "freq_rx_mhz" : 442.35
+   },
+   {
+      "attribs_raw" : "0000f90400000044",
+      "tone_hz" : 127.3,
+      "freq_tx_mhz" : 447.4,
+      "index" : 81,
+      "freq_raw" : "0000244400007444",
+      "freq_rx_mhz" : 442.4
+   },
+   {
+      "freq_raw" : "0050254400507544",
+      "freq_tx_mhz" : 447.55,
+      "index" : 82,
+      "tone_hz" : 127.3,
+      "attribs_raw" : "0000f90400000044",
+      "freq_rx_mhz" : 442.55
+   },
+   {
+      "freq_rx_mhz" : 442.775,
+      "freq_tx_mhz" : 447.775,
+      "freq_raw" : "0075274400757744",
+      "index" : 83,
+      "attribs_raw" : "0000ce0400000044",
+      "tone_hz" : 123
+   },
+   {
+      "freq_rx_mhz" : 442.9,
+      "attribs_raw" : "00001d0300000044",
+      "tone_hz" : 79.7,
+      "freq_tx_mhz" : 447.9,
+      "freq_raw" : "0000294400007944",
+      "index" : 84
+   },
+   {
+      "freq_tx_mhz" : 448.075,
+      "freq_raw" : "0075304400758044",
+      "index" : 85,
+      "attribs_raw" : "0000850500000044",
+      "tone_hz" : 141.3,
+      "freq_rx_mhz" : 443.075
+   },
+   {
+      "attribs_raw" : "0000f90400000044",
+      "tone_hz" : 127.3,
+      "index" : 86,
+      "freq_tx_mhz" : 448.1,
+      "freq_raw" : "0000314400008144",
+      "freq_rx_mhz" : 443.1
+   },
+   {
+      "freq_rx_mhz" : 443.125,
+      "freq_tx_mhz" : 448.125,
+      "index" : 87,
+      "freq_raw" : "0025314400258144",
+      "tone_hz" : 103.5,
+      "attribs_raw" : "00000b0400000044"
+   },
+   {
+      "attribs_raw" : "00000b0400000044",
+      "tone_hz" : 103.5,
+      "freq_tx_mhz" : 448.2,
+      "index" : 88,
+      "freq_raw" : "0000324400008244",
+      "freq_rx_mhz" : 443.2
+   },
+   {
+      "freq_rx_mhz" : 443.275,
+      "freq_tx_mhz" : 448.275,
+      "index" : 89,
+      "freq_raw" : "0075324400758244",
+      "tone_hz" : 123,
+      "attribs_raw" : "0000ce0400000044"
+   },
+   {
+      "freq_tx_mhz" : 448.4,
+      "index" : 90,
+      "freq_raw" : "0000344400008444",
+      "tone_hz" : 123,
+      "attribs_raw" : "0000ce0400000044",
+      "freq_rx_mhz" : 443.4
+   },
+   {
+      "freq_rx_mhz" : 443.475,
+      "tone_hz" : 77,
+      "attribs_raw" : "0000020300000044",
+      "freq_tx_mhz" : 448.475,
+      "freq_raw" : "0075344400758444",
+      "index" : 91
+   },
+   {
+      "freq_rx_mhz" : 444.4,
+      "attribs_raw" : "0000e80300000044",
+      "tone_hz" : 100,
+      "freq_tx_mhz" : 449.4,
+      "freq_raw" : "0000444400009444",
+      "index" : 92
+   },
+   {
+      "freq_tx_mhz" : 449.575,
+      "freq_raw" : "0075454400759544",
+      "index" : 93,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000044",
+      "freq_rx_mhz" : 444.575
+   },
+   {
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff",
+      "index" : 94,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff",
+      "freq_rx_mhz" : null
+   },
+   {
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff",
+      "freq_tx_mhz" : null,
+      "index" : 95,
+      "freq_raw" : "ffffffffffffffff",
+      "freq_rx_mhz" : null
+   },
+   {
+      "freq_rx_mhz" : null,
+      "freq_tx_mhz" : null,
+      "index" : 96,
+      "freq_raw" : "ffffffffffffffff",
+      "attribs_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5
+   },
+   {
+      "freq_rx_mhz" : null,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff",
+      "index" : 97,
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff"
+   },
+   {
+      "freq_rx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff",
+      "freq_tx_mhz" : null,
+      "index" : 98,
+      "attribs_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5
+   },
+   {
+      "freq_rx_mhz" : null,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff",
+      "index" : 99,
+      "attribs_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5
+   },
+   {
+      "freq_raw" : "00254315ffffffff",
+      "freq_tx_mhz" : null,
+      "index" : 100,
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000144",
+      "freq_rx_mhz" : 154.325
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000000",
+      "freq_tx_mhz" : null,
+      "freq_raw" : "00004415ffffffff",
+      "index" : 101,
+      "freq_rx_mhz" : 154.4
+   },
+   {
+      "freq_rx_mhz" : 155.745,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "00455715ffffffff",
+      "index" : 102,
+      "attribs_raw" : "0000000000000100",
+      "tone_hz" : null
+   },
+   {
+      "freq_rx_mhz" : 462.95,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "00502946ffffffff",
+      "index" : 103,
+      "attribs_raw" : "7503750300000044",
+      "tone_hz" : 88.5
+   },
+   {
+      "index" : 104,
+      "freq_tx_mhz" : 0,
+      "freq_raw" : "0075294600000000",
+      "attribs_raw" : "0100010000000044",
+      "tone_hz" : 0.1,
+      "freq_rx_mhz" : 462.975
+   },
+   {
+      "attribs_raw" : "ce04ce0400000044",
+      "tone_hz" : 123,
+      "index" : 105,
+      "freq_tx_mhz" : 154.54,
+      "freq_raw" : "0040451500404515",
+      "freq_rx_mhz" : 154.54
+   },
+   {
+      "freq_raw" : "ffffffffffffffff",
+      "freq_tx_mhz" : null,
+      "index" : 106,
+      "attribs_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5,
+      "freq_rx_mhz" : null
+   },
+   {
+      "freq_rx_mhz" : null,
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff",
+      "index" : 107,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff"
+   },
+   {
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff",
+      "freq_tx_mhz" : null,
+      "index" : 108,
+      "freq_raw" : "ffffffffffffffff",
+      "freq_rx_mhz" : null
+   },
+   {
+      "freq_rx_mhz" : null,
+      "freq_tx_mhz" : null,
+      "index" : 109,
+      "freq_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff"
+   },
+   {
+      "freq_rx_mhz" : null,
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff",
+      "index" : 110,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff"
+   },
+   {
+      "freq_rx_mhz" : 147.36,
+      "index" : 111,
+      "freq_tx_mhz" : 147.96,
+      "freq_raw" : "0060731400607914",
+      "attribs_raw" : "0000000000000044",
+      "tone_hz" : null
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000044",
+      "freq_tx_mhz" : 146.34,
+      "freq_raw" : "0040691400406314",
+      "index" : 112,
+      "freq_rx_mhz" : 146.94
+   },
+   {
+      "freq_tx_mhz" : 144.73,
+      "freq_raw" : "0030531400304714",
+      "index" : 113,
+      "attribs_raw" : "0000000000000004",
+      "tone_hz" : null,
+      "freq_rx_mhz" : 145.33
+   },
+   {
+      "freq_rx_mhz" : 145.19,
+      "freq_tx_mhz" : 144.59,
+      "freq_raw" : "0090511400904514",
+      "index" : 114,
+      "attribs_raw" : "0000000000000044",
+      "tone_hz" : null
+   },
+   {
+      "freq_rx_mhz" : 443.475,
+      "index" : 115,
+      "freq_tx_mhz" : 448.475,
+      "freq_raw" : "0075344400758444",
+      "attribs_raw" : "0000020300000044",
+      "tone_hz" : 77
+   },
+   {
+      "freq_rx_mhz" : 147.39,
+      "index" : 116,
+      "freq_tx_mhz" : 147.99,
+      "freq_raw" : "0090731400907914",
+      "attribs_raw" : "0000e80300000044",
+      "tone_hz" : 100
+   },
+   {
+      "attribs_raw" : "0000e80300000044",
+      "tone_hz" : 100,
+      "freq_raw" : "0070691400706314",
+      "freq_tx_mhz" : 146.37,
+      "index" : 117,
+      "freq_rx_mhz" : 146.97
+   },
+   {
+      "freq_rx_mhz" : null,
+      "attribs_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5,
+      "freq_raw" : "ffffffffffffffff",
+      "freq_tx_mhz" : null,
+      "index" : 118
+   },
+   {
+      "freq_rx_mhz" : null,
+      "index" : 119,
+      "freq_tx_mhz" : null,
+      "freq_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5,
+      "attribs_raw" : "ffffffffffffffff"
+   },
+   {
+      "attribs_raw" : "ffffffffffffffff",
+      "tone_hz" : 6553.5,
+      "freq_tx_mhz" : null,
+      "index" : 120,
+      "freq_raw" : "ffffffffffffffff",
+      "freq_rx_mhz" : null
+   },
+   {
+      "freq_rx_mhz" : 162.4,
+      "freq_tx_mhz" : 162.4,
+      "freq_raw" : "0000241600002416",
+      "index" : 121,
+      "attribs_raw" : "0000000000000140",
+      "tone_hz" : null
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000140",
+      "freq_raw" : "0025241600252416",
+      "freq_tx_mhz" : 162.425,
+      "index" : 122,
+      "freq_rx_mhz" : 162.425
+   },
+   {
+      "attribs_raw" : "0000000000000140",
+      "tone_hz" : null,
+      "freq_tx_mhz" : 162.45,
+      "index" : 123,
+      "freq_raw" : "0050241600502416",
+      "freq_rx_mhz" : 162.45
+   },
+   {
+      "attribs_raw" : "0000000000000140",
+      "tone_hz" : null,
+      "index" : 124,
+      "freq_tx_mhz" : 162.475,
+      "freq_raw" : "0075241600752416",
+      "freq_rx_mhz" : 162.475
+   },
+   {
+      "index" : 125,
+      "freq_tx_mhz" : 162.5,
+      "freq_raw" : "0000251600002516",
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000140",
+      "freq_rx_mhz" : 162.5
+   },
+   {
+      "tone_hz" : null,
+      "attribs_raw" : "0000000000000140",
+      "freq_tx_mhz" : 162.525,
+      "index" : 126,
+      "freq_raw" : "0025251600252516",
+      "freq_rx_mhz" : 162.525
+   },
+   {
+      "freq_rx_mhz" : 162.55,
+      "index" : 127,
+      "freq_tx_mhz" : 162.55,
+      "freq_raw" : "0050251600502516",
+      "attribs_raw" : "0000000000000140",
+      "tone_hz" : null
+   }
+]
+
