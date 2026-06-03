@@ -71,10 +71,10 @@ for ( my $i = 0; $i < $num_channels; $i++ ) {
     my %channel;
     $channel{'index'} = $i;
     if ( $debug ) {
-        print(sprintf ( "FChunk(%03d): %08X %08X\n",
-        $i,
-        unpack( "V", substr($data,0,4) ),
-        unpack( "V", substr($data,4,8))))
+        printf STDERR "FChunk(%03d): %08X %08X\n",
+            $i,
+            unpack( "V", substr($data,0,4) ),
+            unpack( "V", substr($data,4,8));
         };
     $channel{'freq_raw'} = unpack("H16", $data);      # you read 8 bytes
     $channel{'freq_rx_mhz'} = bcd10hz_to_mhz(substr($data,0,4));
@@ -90,9 +90,9 @@ for ( my $i = 0; $i < $num_channels; $i++ ) {
        my $q   = unpack("Q<", $data);               # explicit LE
        my $flags = unpack("C", substr($data,7,1));
 
-       printf "AChunk(%03d): raw=%s lo=%08X hi=%08X q=%016X\n",
+       printf STDERR "AChunk(%03d): raw=%s lo=%08X hi=%08X q=%016X\n",
         $i, $raw, $lo, $hi, $q;
-       printf "CH%03d flags=%02X bits=%08b widebit=%d\n\n",
+       printf STDERR "CH%03d flags=%02X bits=%08b widebit=%d\n\n",
         $i, $flags, $flags, ($flags & 0x40) ? 1 : 0;
 }
     $channel{'attribs_raw'} = unpack("H16", $data);   # 8 bytes => 16 hex chars
