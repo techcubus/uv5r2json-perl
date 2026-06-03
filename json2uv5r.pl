@@ -300,22 +300,30 @@ sub encode_vfo {
     substr($data, 14, 2) = pack("v", encode_tone($v->{rx_tone}));
     substr($data, 16, 2) = pack("v", encode_tone($v->{tx_tone}));
 
-    substr($data, 18, 1) = pack("C", ($v->{band} // 0) & 1);
+    # Start each flag byte from its saved raw value to preserve unknown bits.
+    my $f1b = defined $v->{_f1_raw} ? unpack("C", pack("H*", $v->{_f1_raw})) : 0;
+    my $f3b = defined $v->{_f3_raw} ? unpack("C", pack("H*", $v->{_f3_raw})) : 0;
+    my $f5b = defined $v->{_f5_raw} ? unpack("C", pack("H*", $v->{_f5_raw})) : 0;
+    my $f6b = defined $v->{_f6_raw} ? unpack("C", pack("H*", $v->{_f6_raw})) : 0;
+
+    # f1: bit[0]=band, bits[7:1]=unknown
+    substr($data, 18, 1) = pack("C", ($f1b & 0xFE) | (($v->{band} // 0) & 1));
     substr($data, 19, 1) = defined $v->{_unknown1} ? pack("H*", $v->{_unknown1}) : "\x00";
 
-    my $f3 = ((($v->{sftd}  // 0) & 0x3) << 2)
-           | ((($v->{scode} // 0) & 0xF) << 4);
-    substr($data, 20, 1) = pack("C", $f3);
-
+    # f3: bits[1:0]=unknown, bits[3:2]=sftd, bits[7:4]=scode
+    substr($data, 20, 1) = pack("C", ($f3b & 0x03)
+        | ((($v->{sftd}  // 0) & 0x3) << 2)
+        | ((($v->{scode} // 0) & 0xF) << 4));
     substr($data, 21, 1) = defined $v->{_unknown2} ? pack("H*", $v->{_unknown2}) : "\x00";
 
-    my $f5 = (($v->{step} // 0) & 0x7) << 1;
-    substr($data, 22, 1) = pack("C", $f5);
+    # f5: bit[0]=unknown, bits[3:1]=step, bits[7:4]=unknown
+    substr($data, 22, 1) = pack("C", ($f5b & 0xF1) | ((($v->{step} // 0) & 7) << 1));
 
-    my $f6 = (($v->{txpower}  // 0) & 0x1)
-           | ($v->{wide}       ? (1 << 1) : 0)
-           | ((($v->{txpower3} // 0) & 0x3) << 6);
-    substr($data, 23, 1) = pack("C", $f6);
+    # f6: bit[0]=txpower, bit[1]=wide, bits[5:2]=unknown, bits[7:6]=txpower3
+    substr($data, 23, 1) = pack("C", ($f6b & 0x3C)
+        | (($v->{txpower}  // 0) & 0x1)
+        | ($v->{wide}       ? (1 << 1) : 0)
+        | ((($v->{txpower3} // 0) & 0x3) << 6));
 
     substr($data, 24, 8) = pack("H*", $v->{_unknown_tail}) if defined $v->{_unknown_tail};
 

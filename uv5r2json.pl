@@ -336,12 +336,16 @@ sub decode_vfo {
     my $f5 = unpack("C", substr($data, 22, 1));   # unused[0] step[3:1] unused[7:4]
     my $f6 = unpack("C", substr($data, 23, 1));   # txpower[0] widenarr[1] unknown[5:2] txpower3[7:6]
 
+    $v{_f1_raw}   = hex_raw(substr($data, 18, 1));  # saved so encoder can preserve unknown bits
     $v{band}      = $f1 & 1;                   # 0=VHF 1=UHF
     $v{_unknown1} = hex_raw(substr($data, 19, 1));  # byte 19 is unknown3 in CHIRP struct
+    $v{_f3_raw}   = hex_raw(substr($data, 20, 1));
     $v{sftd}      = ($f3 >> 2) & 3;            # TX shift direction: 0=none 1=up 2=down
     $v{scode}     = ($f3 >> 4) & 0xF;          # PTT-ID code slot
     $v{_unknown2} = hex_raw(substr($data, 21, 1));  # unknown4
+    $v{_f5_raw}   = hex_raw(substr($data, 22, 1));
     $v{step}      = ($f5 >> 1) & 7;            # channel step index
+    $v{_f6_raw}   = hex_raw(substr($data, 23, 1));
     $v{txpower}   = ($f6 >> 0) & 1;            # 2-level power: 0=High 1=Low
     $v{wide}      = ($f6 >> 1) & 1 ? JSON::true : JSON::false;   # 0=NFM 1=FM
     $v{txpower3}  = ($f6 >> 6) & 3;            # 3-level power: 0=High 1=Mid 2=Low
