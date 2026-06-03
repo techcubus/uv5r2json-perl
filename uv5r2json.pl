@@ -21,16 +21,37 @@ my $header;
 my $num_channels = 128;
 my @channels;
 
-# Data processing temp variables
 my $data;
-my $qdata;
-my $qdatalo;
-my $qdatahi;
-my $tone_x10;
 
 # Options
 my $makeup = "true";
 my $debug  = "true";
+
+# DCS codes supported by UV5R: 104 standard DTCS + 645 = 105 total, sorted
+my @UV5R_DTCS = (
+     23,  25,  26,  31,  32,  36,  43,  47,  51,  53,  54,  65,  71,  72,  73,
+     74, 114, 115, 116, 122, 125, 131, 132, 134, 143, 145, 152, 155, 156, 162,
+    165, 172, 174, 205, 212, 223, 225, 226, 243, 244, 245, 246, 251, 252, 255,
+    261, 263, 265, 266, 271, 274, 306, 311, 315, 325, 331, 332, 343, 346, 351,
+    356, 364, 365, 371, 411, 412, 413, 423, 431, 432, 445, 446, 452, 454, 455,
+    462, 464, 465, 466, 503, 506, 516, 523, 526, 532, 546, 565, 606, 612, 624,
+    627, 631, 632, 645, 654, 662, 664, 703, 712, 723, 731, 732, 734, 743, 754,
+);
+
+# Decode a 16-bit tone field to CTCSS Hz (float), DCS string ("DCS023N"/"DCS023R"), or undef
+sub decode_tone {
+    my ($val) = @_;
+    return undef if !defined($val) || $val == 0 || $val == 0xFFFF;
+    my $ndtcs = scalar(@UV5R_DTCS);
+    if ($val >= 0x6A && $val < 0x6A + $ndtcs) {
+        return sprintf("DCS%03dR", $UV5R_DTCS[$val - 0x6A]);
+    } elsif ($val >= 1 && $val <= $ndtcs) {
+        return sprintf("DCS%03dN", $UV5R_DTCS[$val - 1]);
+    } elsif ($val >= 670) {
+        return $val / 10.0;
+    }
+    return undef;
+}
 
 # Actual handling of BCD to MHz values
 sub bcd10hz_to_mhz {
@@ -95,9 +116,34 @@ for ( my $i = 0; $i < $num_channels; $i++ ) {
        printf STDERR "CH%03d flags=%02X bits=%08b widebit=%d\n\n",
         $i, $flags, $flags, ($flags & 0x40) ? 1 : 0;
 }
-    $channel{'attribs_raw'} = unpack("H16", $data);   # 8 bytes => 16 hex chars
-    $tone_x10 = unpack("v", substr($data, 2, 2));
-    $channel{'tone_hz'} = $tone_x10 ? ($tone_x10 / 10.0) : undef;
+    # AChunk byte layout (from CHIRP uv5r.py):
+    # [0..1] rxtone ul16 LE
+    # [2..3] txtone ul16 LE
+    # [4]    bits[2:0]=unused  bit[3]=isuhf  bits[7:4]=scode
+    # [5]    bits[6:0]=unknown  bit[7]=txtoneicon
+    # [6]    bits[2:0]=mailicon  bits[5:3]=unknown  bits[7:6]=lowpower
+    # [7]    bit[0]=unknown  bit[1]=wide  bits[3:2]=unknown  bit[4]=bcl  bit[5]=scan  bits[7:6]=pttid
+    my $rxtone_raw = unpack("v", substr($data, 0, 2));
+    my $txtone_raw = unpack("v", substr($data, 2, 2));
+    my $f1 = unpack("C", substr($data, 4, 1));
+    my $f2 = unpack("C", substr($data, 5, 1));
+    my $f3 = unpack("C", substr($data, 6, 1));
+    my $f4 = unpack("C", substr($data, 7, 1));
+
+    my @power  = ("High", "Low", "Mid", "?");
+    my @pttids = ("Off", "BOT", "EOT", "Both");
+
+    $channel{'attribs_raw'} = unpack("H16", $data);
+    $channel{'rx_tone'}     = decode_tone($rxtone_raw);
+    $channel{'tx_tone'}     = decode_tone($txtone_raw);
+    $channel{'isuhf'}       = ($f1 >> 3) & 0x01 ? JSON::true : JSON::false;
+    $channel{'scode'}       = ($f1 >> 4) & 0x0F;
+    $channel{'txtoneicon'}  = ($f2 >> 7) & 0x01 ? JSON::true : JSON::false;
+    $channel{'power'}       = $power[($f3 >> 6) & 0x03];
+    $channel{'wide'}        = ($f4 >> 1) & 0x01 ? JSON::true : JSON::false;
+    $channel{'bcl'}         = ($f4 >> 4) & 0x01 ? JSON::true : JSON::false;
+    $channel{'scan'}        = ($f4 >> 5) & 0x01 ? JSON::true : JSON::false;
+    $channel{'pttid'}       = $pttids[($f4 >> 6) & 0x03];
     
 
 
