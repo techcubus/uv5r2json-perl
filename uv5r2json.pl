@@ -138,7 +138,7 @@ sub dtmf_code {
 # The radio pads short names with 0xFF or 0x00 to fill the fixed 7-byte field.
 sub trim_name {
     my ($s) = @_;
-    $s =~ s/[\x00\xFF\s]+$//;
+    $s =~ s/[\x00\xFF]+$//;    # strip only null/0xFF padding; spaces may be intentional
     return $s;
 }
 
@@ -298,12 +298,14 @@ sub decode_settings {
     $s{rogerrx}   = $b[40] ? JSON::true : JSON::false;   # roger beep on RX end
     $s{tdrch}     = $b[41];         # dual-watch channel for band B
 
-    # byte 42 is a packed flag byte
+    # byte 42 is a packed flag byte; save raw so the encoder can preserve unknown bits
+    $s{_b42_raw}  = hex_raw(substr($data, 42, 1));
     $s{displayab} = ($b[42] >> 0) & 1 ? JSON::true : JSON::false;  # active display: 0=A 1=B
     $s{fmradio}   = ($b[42] >> 3) & 1 ? JSON::true : JSON::false;  # FM radio enabled
     $s{alarm}     = ($b[42] >> 4) & 1 ? JSON::true : JSON::false;
 
-    # byte 43: another flag byte
+    # byte 43: another flag byte; same rationale for _b43_raw
+    $s{_b43_raw}  = hex_raw(substr($data, 43, 1));
     $s{singleptt} = ($b[43] >> 6) & 1 ? JSON::true : JSON::false;  # single PTT mode
     $s{vfomrlock} = ($b[43] >> 7) & 1 ? JSON::true : JSON::false;  # lock VFO/MR switch
 
@@ -383,11 +385,16 @@ sub decode_squelch_old {
 # enable(1) + lower[2] + upper[2], where the freq bytes are big-endian BCD in whole MHz.
 sub decode_limit {
     my ($data5) = @_;
-    return {
+    my $lower = bbcd_to_mhz(substr($data5, 1, 2));
+    my $upper = bbcd_to_mhz(substr($data5, 3, 2));
+    my %r = (
         enable    => unpack("C", substr($data5, 0, 1)) ? JSON::true : JSON::false,
-        lower_mhz => bbcd_to_mhz(substr($data5, 1, 2)),
-        upper_mhz => bbcd_to_mhz(substr($data5, 3, 2)),
-    };
+        lower_mhz => $lower,
+        upper_mhz => $upper,
+    );
+    # Preserve raw bytes when either limit is invalid BCD so the encoder can round-trip them.
+    $r{_raw} = hex_raw($data5) if !defined($lower) || !defined($upper);
+    return \%r;
 }
 
 # ── Main ──────────────────────────────────────────────────────────────────────
