@@ -78,3 +78,4 @@ The `.img` file is decoded sequentially. All gaps between named blocks are captu
 - Full decode of `settings` bytes 46–85 (`_unknown_tail`)
 - Full decode of `limits_old` unknown fields
 - `json2uv5r` reverse direction
+- TOML input/output format as an accessible alternative to JSON for editing
