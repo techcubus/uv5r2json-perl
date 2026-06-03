@@ -1,0 +1,10 @@
+# real radio backup files — keep out of version control
+test_data/
+
+# editor temporaries
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
