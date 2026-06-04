@@ -4,22 +4,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-`uv5r2json.pl` converts Baofeng UV-5R radio backup images (`.img` binary files) into human-readable JSON. The long-term goal is bidirectional conversion (`json2uv5r`) to help blind users manage radio channel programming without needing the CHIRP GUI.
+Bidirectional converter between Baofeng UV-5R radio backup images (`.img` binary files)
+and human-readable JSON, to help blind users manage radio channel programming without
+needing the CHIRP GUI.
 
-## Running the script
+## Scripts
 
 ```bash
-perl uv5r2json.pl [--no-pretty] [--no-debug] Baofeng_UV-5R_TEST.img
+perl uv5r2json.pl [--no-pretty] [--no-debug] <backup.img>   # decode
+perl json2uv5r.pl <backup.json> <output.img>                 # encode
+python3 chirp_validate.py <backup.img>                       # cross-validate vs CHIRP
 ```
 
 - `--pretty` / `--no-pretty`: pretty-print JSON output (default: on)
-- `--debug` / `--no-debug`: print raw FChunk/AChunk hex to stderr while parsing (default: on)
+- `--debug` / `--no-debug`: print raw FChunk/AChunk hex to stderr (default: on)
 
-Requires Perl with `JSON`, `Data::Dumper`, and `Getopt::Long` modules (`libjson-perl` on Debian/Ubuntu; `Getopt::Long` is a Perl core module).
+Requires Perl with `JSON`, `Data::Dumper`, and `Getopt::Long` (`libjson-perl` on Debian/Ubuntu).
+`chirp_validate.py` requires CHIRP installed (`apt install chirp`).
+
+## Testing
+
+Round-trip and CHIRP cross-validation both pass for all 8 UV-5R/UV-5RA test images in `test_data/`.
+
+```bash
+# Round-trip test
+perl uv5r2json.pl --no-debug file.img > /tmp/out.json
+perl json2uv5r.pl /tmp/out.json /tmp/rt.img
+cmp file.img /tmp/rt.img   # should produce no output
+
+# CHIRP field comparison
+python3 chirp_validate.py file.img
+```
 
 ## Binary file format
 
-The `.img` file is decoded sequentially. All gaps between named blocks are captured as `unknown_NN` fields so the full file can be round-tripped. Block offsets are defined as `$OFF_*` constants at the top of the script, derived from CHIRP's `uv5r.py` `MEM_FORMAT`.
+The `.img` file is decoded sequentially. Gaps between named blocks are captured as
+`unknown_NN` fields so the full file round-trips byte-for-byte. Block offsets are defined
+as `$OFF_*` constants at the top of each script, derived from CHIRP's `uv5r.py` `MEM_FORMAT`.
 
 | Offset | Size | Key | Description |
 |--------|------|-----|-------------|
@@ -41,22 +62,25 @@ The `.img` file is decoded sequentially. All gaps between named blocks are captu
 | 0x1908 | 10 B | `limits_new` | VHF/UHF freq limits (new format) |
 | 0x1910 | 23 B | `limits_old` | VHF/UHF freq limits (old format; overlaps limits_new by 2 bytes) |
 
-### Channel record layout (16 bytes each)
+### Channel record bit layout (16 bytes each)
 
-- **Bytes 0–3** (FChunk): RX frequency — little-endian packed BCD, 10 Hz units
-- **Bytes 4–7** (FChunk): TX frequency — same encoding; equals RX for simplex
-- **Bytes 8–9**: `rx_tone` — decoded by `decode_tone()` (see below)
+CHIRP's bitwise module packs bitfields **MSB-first**: the first field listed occupies
+the most significant bits. All bit positions below are verified against CHIRP.
+
+- **Bytes 0–3**: RX frequency — LE packed BCD, 10 Hz units
+- **Bytes 4–7**: TX frequency — same encoding; equals RX for simplex
+- **Bytes 8–9**: `rx_tone` — decoded by `decode_tone()`
 - **Bytes 10–11**: `tx_tone` — same encoding
-- **Byte 12** (`f1`): bits[3]=isuhf, bits[7:4]=scode
-- **Byte 13** (`f2`): bit[7]=txtoneicon
-- **Byte 14** (`f3`): bits[7:6]=power (High/Low/Mid)
-- **Byte 15** (`f4`): bit[1]=wide, bit[4]=bcl, bit[5]=scan, bits[7:6]=pttid
+- **Byte 12** (`f1`): bits[7:5]=unused, bit[4]=isuhf, bits[3:0]=scode
+- **Byte 13** (`f2`): bits[7:1]=unknown, bit[0]=txtoneicon
+- **Byte 14** (`f3`): bits[7:5]=mailicon, bits[4:2]=unknown, bits[1:0]=lowpower (0=High 1=Low 2=Mid)
+- **Byte 15** (`f4`): bit[7]=unknown, bit[6]=wide, bits[5:4]=unknown, bit[3]=bcl, bit[2]=scan, bits[1:0]=pttid
 
 ### Frequency encodings
 
-- **Channel memory (packed BCD)**: 4 bytes, little-endian, each nibble is a decimal digit, unit = 10 Hz. Decoded by `bcd10hz_to_mhz()`.
-- **VFO (unpacked BCD)**: N bytes where each byte holds exactly one decimal digit (0–9), unit = 10 Hz. Decoded by `vfo_bcd_to_mhz()`.
-- **Frequency limits (big-endian BCD)**: 2 bytes, big-endian packed BCD, whole MHz. Decoded by `bbcd_to_mhz()`.
+- **Channel memory (LE packed BCD)**: 4 bytes, little-endian; each nibble is a decimal digit; unit = 10 Hz. Decoded by `bcd10hz_to_mhz()`.
+- **VFO (unpacked BCD)**: N bytes; one decimal digit (0–9) per byte; unit = 10 Hz. Decoded by `vfo_bcd_to_mhz()`.
+- **Frequency limits (BE packed BCD)**: 2 bytes, big-endian; value is whole MHz. Decoded by `bbcd_to_mhz()`.
 
 ### Tone encoding (`decode_tone`)
 
@@ -65,17 +89,23 @@ The `.img` file is decoded sequentially. All gaps between named blocks are captu
 - `0x6A`–`0xD2` → DCS reverse polarity
 - `≥ 670` → CTCSS Hz (value / 10.0)
 
+## Known findings from cross-image analysis
+
+- **Settings bytes 46–85**: identical across all tested images; firmware constants / unused padding, not user-editable.
+- **VFO `_unknown_tail`**: VFO B is always `"   FM   "` (display label). VFO A contains band-specific state data; both are opaque passthrough.
+- **PTT-ID / ANI**: all fields are factory defaults in the test corpus; nobody has configured them. The `code` field (radio's own ANI ID) and `aniid` (when to send) are the primary user-editable ANI fields.
+- **UV-B6**: fundamentally different format (ASCII text header, ~99 channels, different block layout); not supported.
+
 ## Sample files
 
 - `Baofeng_UV-5R_TEST.img` — binary input
 - `Baofeng_UV-5R_TEST.bin.txt` — hex dump of the binary (reference/debug)
 - `Baofeng_UV-5R_TEST.json.txt` — expected JSON output
+- `chirp_validate.py` — CHIRP cross-validation script
 
 ## Key TODOs
 
 - `--channels` range filter and parameter block selection flags
 - Header validation / magic byte check
-- Full decode of `settings` bytes 46–85 (`_unknown_tail`)
 - Full decode of `limits_old` unknown fields
-- `json2uv5r` reverse direction
 - TOML input/output format as an accessible alternative to JSON for editing
