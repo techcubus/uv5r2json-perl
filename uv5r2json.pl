@@ -206,8 +206,10 @@ sub decode_names {
 }
 
 # Decode the 15 PTT-ID code slots.
-# Each slot is 5 DTMF bytes + 11 bytes of unknown/padding = 16 bytes.
+# Each slot is 5 DTMF bytes + 11 bytes of 0xFF padding = 16 bytes.
 # Slot indices are 1-15; slot 0 means "off" and is not stored here.
+# The _unknown field is always 0xFF×11 across all tested images — pure padding,
+# preserved only for round-trip fidelity.
 sub decode_pttid_codes {
     my ($data) = @_;
     my @codes;
@@ -223,31 +225,46 @@ sub decode_pttid_codes {
 }
 
 # Decode the ANI (Automatic Number Identification) block.
-# This is the auto-ID system that transmits a DTMF burst on key-up/key-down.
-# The "code" field is your own radio's ID; the others are special function codes.
-# Layout from CHIRP: a series of 3- or 5-byte DTMF codes, each followed by padding.
+# ANI transmits a DTMF burst on key-up (BOT), key-down (EOT), or both, controlled by aniid.
+#
+# User-editable fields:
+#   code        — this radio's own PTT-ID/ANI code (what it broadcasts on TX)
+#   aniid       — when to transmit: 0=off  1=BOT  2=EOT  3=both
+#   alarmcode   — DTMF code sent when the alarm function fires
+#   dtmf_on_ms  — DTMF tone duration in milliseconds
+#   dtmf_off_ms — DTMF inter-digit gap in milliseconds
+#   code222..code777, code60606, code70707 — remote-control codes (stun/kill/monitor/etc.);
+#       exact function of each slot varies by firmware revision and is not documented by Baofeng.
+#       Field names are inherited from CHIRP's internal layout, not functional labels.
+#
+# Constant fields (same across all tested images — factory defaults, not user-configurable):
+#   _unknown1  — always 0x00; separator byte between the two groups of 3-byte codes
+#   _unknown2  — always 0x01; separator byte before the 5-byte codes; purpose unknown
+#   _unknown3  — always 0x1F 0x03; two unknown constant bytes after the flags byte
+#   _flags_raw — always 0x02; upper 6 bits always 0, lower 2 bits duplicate aniid
+#
+# Layout: 3-byte codes have 2 bytes of 0xFF padding after them (not stored in JSON).
 sub decode_ani {
     my ($data) = @_;    # 52 bytes total
     my $p = 0;          # walking byte offset within this block
     my %a;
 
-    # Each dtmf_code() call reads the code bytes; $p then skips the trailing padding too
     $a{code222}     = dtmf_code(substr($data, $p, 3), 3); $p += 5;  # 3 code + 2 pad
     $a{code333}     = dtmf_code(substr($data, $p, 3), 3); $p += 5;
     $a{alarmcode}   = dtmf_code(substr($data, $p, 3), 3); $p += 5;
-    $a{_unknown1}   = hex_raw(substr($data, $p, 1));       $p += 1;  # separator byte, meaning unknown
+    $a{_unknown1}   = hex_raw(substr($data, $p, 1));       $p += 1;  # separator; always 0x00
     $a{code555}     = dtmf_code(substr($data, $p, 3), 3); $p += 5;
     $a{code666}     = dtmf_code(substr($data, $p, 3), 3); $p += 5;
     $a{code777}     = dtmf_code(substr($data, $p, 3), 3); $p += 5;
-    $a{_unknown2}   = hex_raw(substr($data, $p, 1));       $p += 1;
-    $a{code60606}   = dtmf_code(substr($data, $p, 5), 5); $p += 5;  # 5-digit code, no padding
+    $a{_unknown2}   = hex_raw(substr($data, $p, 1));       $p += 1;  # separator; always 0x01
+    $a{code60606}   = dtmf_code(substr($data, $p, 5), 5); $p += 5;  # 5-digit codes, no padding
     $a{code70707}   = dtmf_code(substr($data, $p, 5), 5); $p += 5;
     $a{code}        = dtmf_code(substr($data, $p, 5), 5); $p += 5;  # this radio's own ANI code
     $a{aniid}       = unpack("C", substr($data, $p, 1)) & 0x03;      # when to send: 0=off 1=BOT 2=EOT 3=both
-    $a{_flags_raw}  = hex_raw(substr($data, $p, 1));       $p += 1;  # keep raw; upper bits unknown
-    $a{_unknown3}   = hex_raw(substr($data, $p, 2));       $p += 2;
-    $a{dtmf_on_ms}  = unpack("C", substr($data, $p, 1)) * 10; $p += 1;   # DTMF tone duration in ms
-    $a{dtmf_off_ms} = unpack("C", substr($data, $p, 1)) * 10; $p += 1;   # DTMF inter-digit gap in ms
+    $a{_flags_raw}  = hex_raw(substr($data, $p, 1));       $p += 1;  # upper 6 bits always 0 in tested images
+    $a{_unknown3}   = hex_raw(substr($data, $p, 2));       $p += 2;  # always 0x1F 0x03
+    $a{dtmf_on_ms}  = unpack("C", substr($data, $p, 1)) * 10; $p += 1;
+    $a{dtmf_off_ms} = unpack("C", substr($data, $p, 1)) * 10; $p += 1;
 
     return \%a;
 }
