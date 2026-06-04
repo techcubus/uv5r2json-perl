@@ -150,7 +150,8 @@ Supporting the UV-B6 would require a separate decoder.
 
 ### Channel record layout
 
-Bitfields are listed LSB-first within each byte, matching CHIRP's convention.
+CHIRP's bitwise module packs fields **MSB-first**: the first field listed in the struct
+occupies the most significant bits of the byte. Bit positions below reflect this.
 
 ```c
 #pragma pack(1)
@@ -161,26 +162,50 @@ struct uv5r_channel {         /* 16 bytes; 128 records at file offset 0x0008 */
     uint16_t rxtone;          /* 0x08: RX squelch tone (see tone table above) */
     uint16_t txtone;          /* 0x0A: TX squelch tone */
 
-    /* byte 0x0C */
-    uint8_t  unused     : 3;  /* bits 2:0  reserved */
-    uint8_t  isuhf      : 1;  /* bit  3    0=VHF, 1=UHF */
-    uint8_t  scode      : 4;  /* bits 7:4  PTT-ID DTMF code slot (0=off, 1–15) */
+    /* byte 0x0C — MSB first */
+    uint8_t  unused     : 3;  /* bits 7:5  reserved */
+    uint8_t  isuhf      : 1;  /* bit  4    0=VHF, 1=UHF */
+    uint8_t  scode      : 4;  /* bits 3:0  PTT-ID DTMF code slot (0=off, 1–15) */
 
-    /* byte 0x0D */
-    uint8_t  unknown1   : 7;  /* bits 6:0  unknown */
-    uint8_t  txtoneicon : 1;  /* bit  7    TX tone indicator icon */
+    /* byte 0x0D — MSB first */
+    uint8_t  unknown1   : 7;  /* bits 7:1  unknown */
+    uint8_t  txtoneicon : 1;  /* bit  0    TX tone indicator icon */
 
-    /* byte 0x0E */
-    uint8_t  mailicon   : 3;  /* bits 2:0  mailbox icon */
-    uint8_t  unknown2   : 3;  /* bits 5:3  unknown */
-    uint8_t  lowpower   : 2;  /* bits 7:6  0=High 1=Low 2=Mid */
+    /* byte 0x0E — MSB first */
+    uint8_t  mailicon   : 3;  /* bits 7:5  mailbox icon */
+    uint8_t  unknown2   : 3;  /* bits 4:2  unknown */
+    uint8_t  lowpower   : 2;  /* bits 1:0  0=High 1=Low 2=Mid */
 
-    /* byte 0x0F */
-    uint8_t  unknown3   : 1;  /* bit  0    unknown */
-    uint8_t  wide       : 1;  /* bit  1    0=NFM (narrow) 1=FM (wide) */
-    uint8_t  unknown4   : 2;  /* bits 3:2  unknown */
-    uint8_t  bcl        : 1;  /* bit  4    busy channel lockout */
-    uint8_t  scan       : 1;  /* bit  5    0=skip 1=include in scan */
-    uint8_t  pttid      : 2;  /* bits 7:6  PTT-ID timing: 0=off 1=BOT 2=EOT 3=both */
+    /* byte 0x0F — MSB first */
+    uint8_t  unknown3   : 1;  /* bit  7    unknown */
+    uint8_t  wide       : 1;  /* bit  6    0=NFM (narrow) 1=FM (wide) */
+    uint8_t  unknown4   : 2;  /* bits 5:4  unknown */
+    uint8_t  bcl        : 1;  /* bit  3    busy channel lockout */
+    uint8_t  scan       : 1;  /* bit  2    0=skip 1=include in scan */
+    uint8_t  pttid      : 2;  /* bits 1:0  PTT-ID timing: 0=off 1=BOT 2=EOT 3=both */
 };
 ```
+
+## Testing
+
+### Round-trip
+
+```bash
+perl uv5r2json.pl --no-debug <backup.img> > backup.json
+perl json2uv5r.pl backup.json roundtrip.img
+cmp backup.img roundtrip.img   # should produce no output
+```
+
+All 8 UV-5R/UV-5RA test images round-trip byte-for-byte.
+
+### CHIRP cross-validation
+
+`chirp_validate.py` decodes a `.img` file with both our tool and the CHIRP Python API,
+then compares every channel field (frequency, mode, power, tone, name, scan, BCL).
+Requires CHIRP installed (`apt install chirp` on Debian/Ubuntu).
+
+```bash
+python3 chirp_validate.py <backup.img>
+```
+
+All 8 test images pass with zero mismatches against CHIRP 0.3.0dev.
