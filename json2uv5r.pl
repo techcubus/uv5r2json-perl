@@ -331,12 +331,14 @@ sub encode_vfo {
 }
 
 # Encode a 14-byte two-line message block (power-on message, firmware string, etc.).
+# Pad short lines with spaces (0x20), not nulls — the radio uses spaces for blank display
+# positions, and users may rely on them for alignment and centering.
 sub encode_messages {
     my ($m) = @_;
     my $l1 = substr($m->{line1} // '', 0, 7);
     my $l2 = substr($m->{line2} // '', 0, 7);
-    return $l1 . "\x00" x (7 - length($l1))
-         . $l2 . "\x00" x (7 - length($l2));
+    return $l1 . " " x (7 - length($l1))
+         . $l2 . " " x (7 - length($l2));
 }
 
 # Encode the 42-byte new-format squelch table.

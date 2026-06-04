@@ -364,8 +364,14 @@ sub decode_vfo {
     return \%v;
 }
 
-# Decode a 14-byte power-on / firmware message block.
-# Two 7-character lines, null/0xFF padded.
+# Decode a 14-byte message block (power-on greeting, firmware version, etc.).
+# Stored as two consecutive 7-character fixed-width lines, space- or null/0xFF-padded
+# on the right.  Spaces are MEANINGFUL — the radio uses them for centering and blank
+# lines — so trim_name strips only null/0xFF, never spaces.
+# Used for three different blocks with different editability:
+#   poweron_msg     — user-configurable greeting (controlled by the ponmsg setting)
+#   six_poweron_msg — production date / model code written at manufacture; not user-editable
+#   firmware_msg    — firmware version string; read-only
 sub decode_messages {
     my ($data14) = @_;
     return {
