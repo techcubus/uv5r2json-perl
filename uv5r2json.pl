@@ -312,7 +312,9 @@ sub decode_settings {
     $s{workmode}  = $b[44];         # 0=frequency (VFO) mode  1=channel (MR) mode
     $s{keylock}   = $b[45] ? JSON::true : JSON::false;
 
-    # Bytes 46-85: additional fields not yet decoded — preserve raw for round-tripping
+    # Bytes 46-85: identical across all tested images regardless of user configuration.
+    # Appears to be firmware constants / unused padding, not user-editable settings.
+    # Preserved verbatim for round-trip fidelity.
     $s{_unknown_tail} = hex_raw(substr($data, 46)) if length($data) > 46;
 
     return \%s;
