@@ -78,6 +78,59 @@ Applies to `rx_tone` and `tx_tone` in both channel records and VFO blocks.
 | `0x006A`–`0x00D2` | `"DCS023R"` etc. | DCS reverse polarity; code = `UV5R_DTCS[value − 0x6A]` |
 | `≥ 670` | `88.5` etc. | CTCSS; frequency = value ÷ 10 Hz |
 
+## Block editability
+
+Not all blocks are equal. Treat them in three tiers:
+
+**Edit freely** — the primary use case:
+- `channels` — frequency, tone, name, power, scan, wide/narrow
+
+**Edit with care** — legitimate user settings:
+- `settings` — squelch, VOX, display mode, backlight, scan resume, etc.
+- `wmchannel` — which channel is selected on display A / B
+- `vfo_a`, `vfo_b` — VFO frequency and mode state
+- `poweron_msg` — user-configurable power-on greeting (two 7-char lines; spaces are meaningful for alignment)
+- `pttid_codes` — 15 DTMF code slots for PTT-ID
+- `ani` — ANI auto-ID code, timing, and remote-control codes
+
+**Preserve unchanged** — calibration or read-only data:
+- `squelch_new`, `squelch_old` — factory-calibrated squelch thresholds
+- `limits_new`, `limits_old` — hardware frequency limits
+- `six_poweron_msg` — production date / model code written at manufacture
+- `firmware_msg` — firmware version string (read-only)
+- `fm_presets_raw`, `header`, all `unknown_NN` fields
+
+## Settings field reference
+
+Key enum values for `settings` fields:
+
+| Field | Values |
+|-------|--------|
+| `step` | 0=2.5k 1=5k 2=6.25k 3=10k 4=12.5k 5=20k 6=25k 7=50k Hz |
+| `save` | 0=off 1=1:1 2=1:2 3=1:3 4=1:4 |
+| `dtmfst` | 0=off 1=DT-ST 2=ANI-ST 3=DT+ANI |
+| `screv` | 0=time (TO) 1=carrier (CO) 2=search (SE) |
+| `pttid` | 0=off 1=BOT 2=EOT 3=both |
+| `mdfa` / `mdfb` | 0=frequency 1=channel# 2=name |
+| `sftd` | 0=none 1=up (+) 2=down (−) |
+| `wtled` / `rxled` / `txled` | 0=off 1=blue 2=orange 3=purple |
+| `almod` | 0=site 1=tone 2=code |
+| `ponmsg` | 0=logo 1=voltage 2=message |
+| `voice` | 0=off 1=Chinese 2=English |
+| `workmode` | 0=VFO (frequency) 1=MR (channel memory) |
+| `timeout` | value × 15 seconds; 0=off |
+| `pttlt` | value × 100 ms pre-transmit delay |
+
+## ANI field reference
+
+| Field | Notes |
+|-------|-------|
+| `code` | This radio's own PTT-ID; transmitted as a DTMF burst on TX |
+| `aniid` | When to transmit: 0=off 1=BOT 2=EOT 3=both |
+| `alarmcode` | DTMF code sent when the alarm fires |
+| `dtmf_on_ms` / `dtmf_off_ms` | Tone duration and inter-digit gap in ms |
+| `code222`…`code777`, `code60606`, `code70707` | Remote-control codes (stun/kill/monitor); exact function varies by firmware and is undocumented by Baofeng. Field names are inherited from CHIRP's internal layout. |
+
 ## Compatibility
 
 Tested against UV-5R and UV-5RA backup images; all round-trip byte-for-byte.
