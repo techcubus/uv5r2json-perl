@@ -1,10 +1,30 @@
 # uv5r2json-perl
 
 Converts Baofeng UV-5R radio backup images (`.img` binary files) to and from
-human-readable JSON. Intended to help blind users manage channel programming
+human-readable JSON, and can read/write the radio directly over a serial
+programming cable. Intended to help blind users manage channel programming
 without needing the CHIRP GUI.
 
 ## Usage
+
+### Read image from radio
+
+```
+perl uv5r_serial.pl --read backup.img [--port /dev/ttyUSB0]
+```
+
+Connects to the radio via the programming cable, downloads the full memory
+image, and saves it as a `.img` file ready for `uv5r2json.pl`.
+
+### Write image to radio
+
+```
+perl uv5r_serial.pl --write backup.img [--port /dev/ttyUSB0]
+```
+
+Uploads a `.img` file (e.g. produced by `json2uv5r.pl`) back to the radio.
+
+The default port is `/dev/ttyUSB0`. Use `--port` to override (e.g. `--port /dev/ttyACM0`).
 
 ### Decode: .img → JSON
 
@@ -26,10 +46,23 @@ perl json2uv5r.pl <backup.json> <output.img>
 Round-trips losslessly: `json2uv5r.pl` applied to the output of `uv5r2json.pl`
 reproduces the original `.img` byte-for-byte.
 
+### Full terminal workflow
+
+```bash
+perl uv5r_serial.pl --read backup.img          # pull from radio
+perl uv5r2json.pl --no-debug backup.img > backup.json
+# edit backup.json in any text editor
+perl json2uv5r.pl backup.json new.img
+perl uv5r_serial.pl --write new.img            # push to radio
+```
+
 ## Dependencies
 
-Perl with `JSON`, `Data::Dumper`, and `Getopt::Long`.
+**`uv5r2json.pl` / `json2uv5r.pl`:** Perl with `JSON`, `Data::Dumper`, and `Getopt::Long`.
 On Debian/Ubuntu: `sudo apt install libjson-perl` (`Getopt::Long` is a core module).
+
+**`uv5r_serial.pl`:** additionally requires `Device::SerialPort` and `Time::HiRes`.
+On Debian/Ubuntu: `sudo apt install libdevice-serialport-perl` (`Time::HiRes` is a core module).
 
 ## .img File Format
 

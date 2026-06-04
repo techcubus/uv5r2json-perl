@@ -4,23 +4,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-Bidirectional converter between Baofeng UV-5R radio backup images (`.img` binary files)
-and human-readable JSON, to help blind users manage radio channel programming without
-needing the CHIRP GUI.
+End-to-end tool for Baofeng UV-5R radio programming without a GUI: read/write
+the radio directly over a serial cable, convert the image to/from human-readable
+JSON, and edit channels with any text editor. Intended for blind users who cannot
+use the CHIRP GUI.
 
 ## Scripts
 
 ```bash
-perl uv5r2json.pl [--no-pretty] [--no-debug] <backup.img>   # decode
-perl json2uv5r.pl <backup.json> <output.img>                 # encode
-python3 chirp_validate.py <backup.img>                       # cross-validate vs CHIRP
+perl uv5r_serial.pl --read  backup.img [--port /dev/ttyUSB0]   # download from radio
+perl uv5r_serial.pl --write backup.img [--port /dev/ttyUSB0]   # upload to radio
+perl uv5r2json.pl [--no-pretty] [--no-debug] <backup.img>      # decode img → JSON
+perl json2uv5r.pl <backup.json> <output.img>                    # encode JSON → img
+python3 chirp_validate.py <backup.img>                          # cross-validate vs CHIRP
 ```
 
 - `--pretty` / `--no-pretty`: pretty-print JSON output (default: on)
 - `--debug` / `--no-debug`: print raw FChunk/AChunk hex to stderr (default: on)
 
-Requires Perl with `JSON`, `Data::Dumper`, and `Getopt::Long` (`libjson-perl` on Debian/Ubuntu).
+`uv5r2json.pl` / `json2uv5r.pl` require Perl with `JSON`, `Data::Dumper`, and `Getopt::Long` (`libjson-perl` on Debian/Ubuntu).
+`uv5r_serial.pl` additionally requires `Device::SerialPort` (`libdevice-serialport-perl`) and `Time::HiRes` (core module).
 `chirp_validate.py` requires CHIRP installed (`apt install chirp`).
+
+### Serial protocol
+
+`uv5r_serial.pl` speaks the UV-5R clone protocol directly (9600 8N1). It tries
+two ident magic sequences (291 variant first, then original), downloads/uploads
+the 0x1800-byte main block plus the 0x140-byte aux block, and produces `.img`
+files byte-compatible with CHIRP. Protocol derived from CHIRP's `uv5r.py` (GPL v3).
 
 ## Testing
 
