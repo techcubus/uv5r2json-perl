@@ -269,65 +269,78 @@ sub decode_ani {
     return \%a;
 }
 
-# Decode global radio settings.
-# This is a 86-byte block with many single-byte fields. Unknown bytes are preserved.
-# Field meanings from CHIRP; some are indices into menus the radio displays.
+# Decode the 86-byte global settings block.
+# Field meanings from CHIRP (chirp/drivers/uv5r.py).  Enum values are noted inline.
+#
+# Unknown bytes that VARY across tested images (meaning unclear, preserved for round-trip):
+#   _unknown1 (byte  2): 0x00 or 0x01
+#   _unknown2 (byte  5): 0x00 or 0x01
+#   _unknown6 (bytes 26-28): byte 26 always 0x00; bytes 27-28 either 0x00 0x00 or 0x69 0x69
+#       (0x69=105; possibly a default VFO TX offset in some unit, but doesn't map to any
+#        standard repeater split cleanly)
+#   _b42_raw  (byte 42): bit 7 varies (0 or 1); bits 1-2 always set; upper bits unknown
+#
+# Unknown bytes that are CONSTANT across all tested images (firmware defaults, not editable):
+#   _unknown3 (bytes 10-13), _unknown4 (byte 15), _unknown5 (byte 17): always 0x00
+#   _b43_raw  (byte 43): always 0x00 (singleptt and vfomrlock always off)
+#   _unknown_tail (bytes 46-85): firmware constants / padding
 sub decode_settings {
     my ($data) = @_;    # 86 bytes
     my @b = unpack("C*", $data);    # treat as array of bytes for easy indexing
     my %s;
 
     $s{squelch}   = $b[0];          # squelch level 0-9
-    $s{step}      = $b[1];          # channel step size index
+    $s{step}      = $b[1];          # channel step index: 0=2.5k 1=5k 2=6.25k 3=10k 4=12.5k 5=20k 6=25k 7=50k
     $s{_unknown1} = hex_raw(substr($data,  2, 1));
-    $s{save}      = $b[3];          # battery save setting
-    $s{vox}       = $b[4];          # VOX sensitivity 0=off, 1-10
+    $s{save}      = $b[3];          # battery save: 0=off 1=1:1 2=1:2 3=1:3 4=1:4
+    $s{vox}       = $b[4];          # VOX sensitivity: 0=off, 1-10
     $s{_unknown2} = hex_raw(substr($data,  5, 1));
-    $s{abr}       = $b[6];          # auto backlight timer (seconds)
-    $s{tdr}       = $b[7]  ? JSON::true : JSON::false;   # dual-watch (twin display receive)
-    $s{beep}      = $b[8]  ? JSON::true : JSON::false;   # keypad beep
-    $s{timeout}   = $b[9];          # TX timeout in 15-second units (0=off)
+    $s{abr}       = $b[6];          # auto backlight timer in seconds (0=off)
+    $s{tdr}       = $b[7]  ? JSON::true : JSON::false;   # dual-watch / twin display receive
+    $s{beep}      = $b[8]  ? JSON::true : JSON::false;   # keypad beep on button press
+    $s{timeout}   = $b[9];          # TX timeout: value × 15 seconds (0=off)
     $s{_unknown3} = hex_raw(substr($data, 10, 4));
     $s{voice}     = $b[14];         # voice prompt: 0=off 1=Chinese 2=English
     $s{_unknown4} = hex_raw(substr($data, 15, 1));
-    $s{dtmfst}    = $b[16];         # DTMF side-tone
+    $s{dtmfst}    = $b[16];         # DTMF side-tone: 0=off 1=DT-ST 2=ANI-ST 3=DT+ANI
     $s{_unknown5} = hex_raw(substr($data, 17, 1));
-    $s{screv}     = $b[18] & 0x03;  # scan resume mode: 0=timeout 1=carrier 2=search
-    $s{pttid}     = $b[19];         # global PTT-ID mode (overridden per-channel)
-    $s{pttlt}     = $b[20];         # PTT-ID delay time
+    $s{screv}     = $b[18] & 0x03;  # scan resume: 0=time (TO) 1=carrier (CO) 2=search (SE)
+    $s{pttid}     = $b[19];         # global PTT-ID: 0=off 1=BOT 2=EOT 3=both (per-channel overrides)
+    $s{pttlt}     = $b[20];         # PTT-ID pre-transmit delay in 100 ms units
     $s{mdfa}      = $b[21];         # display A mode: 0=frequency 1=channel# 2=name
-    $s{mdfb}      = $b[22];         # display B mode
-    $s{bcl}       = $b[23] ? JSON::true : JSON::false;   # global busy channel lockout
+    $s{mdfb}      = $b[22];         # display B mode: 0=frequency 1=channel# 2=name
+    $s{bcl}       = $b[23] ? JSON::true : JSON::false;   # busy channel lockout (global)
     $s{autolk}    = $b[24] ? JSON::true : JSON::false;   # auto keylock
-    $s{sftd}      = $b[25];         # shift direction for VFO TX offset
-    $s{_unknown6} = hex_raw(substr($data, 26, 3));
-    $s{wtled}     = $b[29];         # standby backlight color
-    $s{rxled}     = $b[30];         # RX backlight color
-    $s{txled}     = $b[31];         # TX backlight color
-    $s{almod}     = $b[32];         # alarm mode
-    $s{band}      = $b[33];         # band selection
-    $s{tdrab}     = $b[34];         # dual-watch priority band (A or B)
+    $s{sftd}      = $b[25];         # VFO TX shift direction: 0=none 1=up (+) 2=down (-)
+    $s{_unknown6} = hex_raw(substr($data, 26, 3));        # bytes 27-28 sometimes 0x69 0x69
+    $s{wtled}     = $b[29];         # standby LED color: 0=off 1=blue 2=orange 3=purple
+    $s{rxled}     = $b[30];         # RX LED color: 0=off 1=blue 2=orange 3=purple
+    $s{txled}     = $b[31];         # TX LED color: 0=off 1=blue 2=orange 3=purple
+    $s{almod}     = $b[32];         # alarm mode: 0=site 1=tone 2=code
+    $s{band}      = $b[33];         # band selection: 0=VHF 1=UHF
+    $s{tdrab}     = $b[34];         # dual-watch priority: 0=band A 1=band B
     $s{ste}       = $b[35] ? JSON::true : JSON::false;   # squelch tail elimination
-    $s{rpste}     = $b[36];         # repeater squelch tail elimination
-    $s{rptrl}     = $b[37];         # repeater tail delay
-    $s{ponmsg}    = $b[38];         # power-on message type: 0=image 1=voltage 2=message
-    $s{roger}     = $b[39] ? JSON::true : JSON::false;   # roger beep on TX end
+    $s{rpste}     = $b[36];         # repeater STE: 0=off 1-10 (×100 ms)
+    $s{rptrl}     = $b[37];         # repeater tail delay: 0=off 1-5 (×100 ms)
+    $s{ponmsg}    = $b[38];         # power-on message: 0=logo 1=voltage 2=message
+    $s{roger}     = $b[39] ? JSON::true : JSON::false;   # roger beep on TX release
     $s{rogerrx}   = $b[40] ? JSON::true : JSON::false;   # roger beep on RX end
-    $s{tdrch}     = $b[41];         # dual-watch channel for band B
+    $s{tdrch}     = $b[41];         # dual-watch band-B channel number
 
-    # byte 42 is a packed flag byte; save raw so the encoder can preserve unknown bits
+    # Byte 42: packed flags.  Bits 1-2 always set in tested images (firmware default).
+    # Bit 7 varies across images; meaning unknown.  Raw saved so encoder preserves all bits.
     $s{_b42_raw}  = hex_raw(substr($data, 42, 1));
-    $s{displayab} = ($b[42] >> 0) & 1 ? JSON::true : JSON::false;  # active display: 0=A 1=B
-    $s{fmradio}   = ($b[42] >> 3) & 1 ? JSON::true : JSON::false;  # FM radio enabled
-    $s{alarm}     = ($b[42] >> 4) & 1 ? JSON::true : JSON::false;
+    $s{displayab} = ($b[42] >> 0) & 1 ? JSON::true : JSON::false;  # active display: false=A true=B
+    $s{fmradio}   = ($b[42] >> 3) & 1 ? JSON::true : JSON::false;  # FM broadcast radio enabled
+    $s{alarm}     = ($b[42] >> 4) & 1 ? JSON::true : JSON::false;  # alarm function enabled
 
-    # byte 43: another flag byte; same rationale for _b43_raw
+    # Byte 43: packed flags.  Both decoded bits are always false in tested images.
     $s{_b43_raw}  = hex_raw(substr($data, 43, 1));
-    $s{singleptt} = ($b[43] >> 6) & 1 ? JSON::true : JSON::false;  # single PTT mode
-    $s{vfomrlock} = ($b[43] >> 7) & 1 ? JSON::true : JSON::false;  # lock VFO/MR switch
+    $s{singleptt} = ($b[43] >> 6) & 1 ? JSON::true : JSON::false;  # single PTT across both bands
+    $s{vfomrlock} = ($b[43] >> 7) & 1 ? JSON::true : JSON::false;  # lock VFO/MR mode switch
 
-    $s{workmode}  = $b[44];         # 0=frequency (VFO) mode  1=channel (MR) mode
-    $s{keylock}   = $b[45] ? JSON::true : JSON::false;
+    $s{workmode}  = $b[44];         # 0=VFO (frequency) mode  1=MR (channel memory) mode
+    $s{keylock}   = $b[45] ? JSON::true : JSON::false;   # keypad locked
 
     # Bytes 46-85: identical across all tested images regardless of user configuration.
     # Appears to be firmware constants / unused padding, not user-editable settings.
