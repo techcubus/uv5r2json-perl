@@ -129,34 +129,35 @@ sub encode_channel {
         substr($attrs, 2, 2) = pack("v", encode_tone($ch->{tx_tone}));
     }
 
-    # f1 (byte 4): bits[2:0]=unknown  bit[3]=isuhf  bits[7:4]=scode
+    # Bit layout is MSB-first per CHIRP's bitwise module (verified against uv5r.py MEM_FORMAT).
+    # f1 (byte 4): bits[7:5]=unused  bit[4]=isuhf  bits[3:0]=scode
     my $f1 = unpack("C", substr($attrs, 4, 1));
-    $f1 = ($f1 & 0x07)
-        | ($ch->{isuhf}  ? (1 << 3) : 0)
-        | (($ch->{scode} // 0) << 4);
+    $f1 = ($f1 & 0xE0)
+        | ($ch->{isuhf}  ? (1 << 4) : 0)
+        | (($ch->{scode} // 0) & 0xF);
     substr($attrs, 4, 1) = pack("C", $f1);
 
-    # f2 (byte 5): bits[6:0]=unknown  bit[7]=txtoneicon
+    # f2 (byte 5): bits[7:1]=unknown  bit[0]=txtoneicon
     my $f2 = unpack("C", substr($attrs, 5, 1));
-    $f2 = ($f2 & 0x7F) | ($ch->{txtoneicon} ? (1 << 7) : 0);
+    $f2 = ($f2 & 0xFE) | ($ch->{txtoneicon} ? 1 : 0);
     substr($attrs, 5, 1) = pack("C", $f2);
 
-    # f3 (byte 6): bits[5:0]=unknown  bits[7:6]=power
+    # f3 (byte 6): bits[7:5]=mailicon  bits[4:2]=unknown  bits[1:0]=lowpower
     my %power_idx = (High => 0, Low => 1, Mid => 2, '?' => 3);
     my $pow = $power_idx{$ch->{power} // 'High'} // 0;
     my $f3  = unpack("C", substr($attrs, 6, 1));
-    $f3 = ($f3 & 0x3F) | (($pow & 3) << 6);
+    $f3 = ($f3 & 0xFC) | ($pow & 3);
     substr($attrs, 6, 1) = pack("C", $f3);
 
-    # f4 (byte 7): bits[0,2,3]=unknown  bit[1]=wide  bit[4]=bcl  bit[5]=scan  bits[7:6]=pttid
+    # f4 (byte 7): bit[7]=unknown  bit[6]=wide  bits[5:4]=unknown  bit[3]=bcl  bit[2]=scan  bits[1:0]=pttid
     my %pttid_idx = (Off => 0, BOT => 1, EOT => 2, Both => 3);
     my $pttid = $pttid_idx{$ch->{pttid} // 'Off'} // 0;
     my $f4    = unpack("C", substr($attrs, 7, 1));
-    $f4 = ($f4 & 0x0D)
-        | ($ch->{wide} ? (1 << 1) : 0)
-        | ($ch->{bcl}  ? (1 << 4) : 0)
-        | ($ch->{scan} ? (1 << 5) : 0)
-        | (($pttid & 3) << 6);
+    $f4 = ($f4 & 0xB0)
+        | ($ch->{wide} ? (1 << 6) : 0)
+        | ($ch->{bcl}  ? (1 << 3) : 0)
+        | ($ch->{scan} ? (1 << 2) : 0)
+        | ($pttid & 3);
     substr($attrs, 7, 1) = pack("C", $f4);
 
     return $freqs . $attrs;

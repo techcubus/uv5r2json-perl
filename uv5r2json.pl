@@ -167,12 +167,14 @@ sub decode_channel {
     $ch{freq_tx_mhz} = bcd10hz_to_mhz(substr($data, 4, 4));  # equals rx for simplex
 
     # Attribute chunk (bytes 8-15)
+    # Bit layout verified against CHIRP's bitwise module (MEM_FORMAT in uv5r.py).
+    # CHIRP packs bitfields MSB-first: the first field listed occupies the highest bits.
     my $rxtone_raw = unpack("v", substr($data, 8,  2));   # little-endian u16
     my $txtone_raw = unpack("v", substr($data, 10, 2));
-    my $f1 = unpack("C", substr($data, 12, 1));   # bits[2:0]=unused  bit[3]=isuhf  bits[7:4]=scode
-    my $f2 = unpack("C", substr($data, 13, 1));   # bits[6:0]=unknown  bit[7]=txtoneicon
-    my $f3 = unpack("C", substr($data, 14, 1));   # bits[2:0]=mailicon  bits[5:3]=unknown  bits[7:6]=lowpower
-    my $f4 = unpack("C", substr($data, 15, 1));   # bit[1]=wide  bit[4]=bcl  bit[5]=scan  bits[7:6]=pttid
+    my $f1 = unpack("C", substr($data, 12, 1));   # bits[7:5]=unused  bit[4]=isuhf  bits[3:0]=scode
+    my $f2 = unpack("C", substr($data, 13, 1));   # bits[7:1]=unknown  bit[0]=txtoneicon
+    my $f3 = unpack("C", substr($data, 14, 1));   # bits[7:5]=mailicon  bits[4:2]=unknown  bits[1:0]=lowpower
+    my $f4 = unpack("C", substr($data, 15, 1));   # bit[7]=unknown  bit[6]=wide  bits[5:4]=unknown  bit[3]=bcl  bit[2]=scan  bits[1:0]=pttid
 
     my @power  = ("High", "Low", "Mid", "?");           # lowpower field: 2 bits, index into this
     my @pttids = ("Off", "BOT", "EOT", "Both");         # pttid field: 2 bits
@@ -180,14 +182,14 @@ sub decode_channel {
     $ch{attribs_raw} = hex_raw(substr($data, 8, 8));    # keep raw for verification
     $ch{rx_tone}     = decode_tone($rxtone_raw);
     $ch{tx_tone}     = decode_tone($txtone_raw);
-    $ch{isuhf}       = ($f1 >> 3) & 1 ? JSON::true : JSON::false;  # 0=VHF 1=UHF
-    $ch{scode}       = ($f1 >> 4) & 0xF;                            # PTT-ID code slot 0-15
-    $ch{txtoneicon}  = ($f2 >> 7) & 1 ? JSON::true : JSON::false;  # display icon only, not a setting
-    $ch{power}       = $power[($f3 >> 6) & 3];
-    $ch{wide}        = ($f4 >> 1) & 1 ? JSON::true : JSON::false;  # 0=NFM (narrow) 1=FM (wide)
-    $ch{bcl}         = ($f4 >> 4) & 1 ? JSON::true : JSON::false;  # busy channel lockout
-    $ch{scan}        = ($f4 >> 5) & 1 ? JSON::true : JSON::false;  # 0=skip this channel in scan
-    $ch{pttid}       = $pttids[($f4 >> 6) & 3];                    # when to send PTT-ID burst
+    $ch{isuhf}       = ($f1 >> 4) & 1 ? JSON::true : JSON::false;  # 0=VHF 1=UHF
+    $ch{scode}       = $f1 & 0xF;                                   # PTT-ID code slot 0-15
+    $ch{txtoneicon}  = $f2 & 1 ? JSON::true : JSON::false;          # display icon only, not a setting
+    $ch{power}       = $power[$f3 & 3];                             # bits[1:0]: 0=High 1=Low 2=Mid
+    $ch{wide}        = ($f4 >> 6) & 1 ? JSON::true : JSON::false;  # 0=NFM (narrow) 1=FM (wide)
+    $ch{bcl}         = ($f4 >> 3) & 1 ? JSON::true : JSON::false;  # busy channel lockout
+    $ch{scan}        = ($f4 >> 2) & 1 ? JSON::true : JSON::false;  # 0=skip 1=include in scan
+    $ch{pttid}       = $pttids[$f4 & 3];                           # when to send PTT-ID burst
 
     return \%ch;
 }
