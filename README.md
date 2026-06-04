@@ -78,6 +78,23 @@ Applies to `rx_tone` and `tx_tone` in both channel records and VFO blocks.
 | `0x006A`–`0x00D2` | `"DCS023R"` etc. | DCS reverse polarity; code = `UV5R_DTCS[value − 0x6A]` |
 | `≥ 670` | `88.5` etc. | CTCSS; frequency = value ÷ 10 Hz |
 
+## Compatibility
+
+Tested against UV-5R and UV-5RA backup images; all round-trip byte-for-byte.
+
+The **UV-B6** uses a fundamentally different format and is not supported:
+
+| | UV-5R | UV-B6 |
+|---|---|---|
+| File size | ~6.5 KB | 4144 bytes |
+| Header | 8-byte binary magic (`aa367404...`) | 48-byte ASCII text (`"KT511 Radio Program data v1.08\0..."`) |
+| Channel block offset | 0x0008 | ~0x0040 (after a 16-byte config record at 0x0030) |
+| Channel count | 128 | 99 + separate FM memory |
+| Channel record | rxfreq[0:3], txfreq[4:7], tones, flags | Different field layout — frequency encoding is the same LE packed BCD but field positions differ |
+| Configuration blocks | PTT-ID, ANI, VFO A/B, names, messages, squelch, limits | Much sparser; different block layout |
+
+Supporting the UV-B6 would require a separate decoder.
+
 ### Channel record layout
 
 Bitfields are listed LSB-first within each byte, matching CHIRP's convention.
